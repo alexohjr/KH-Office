@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat_window">
+
+	<insert id="insertOne" parameterType="com.khacademy.khoffice.chat_window.models.ChatWindowMemberDTO">
+	  <selectKey keyProperty="cwindow_no" resultType="int" order="BEFORE">
+	    SELECT chat_window_seq.NEXTVAL FROM DUAL
+	  </selectKey>
+	  INSERT INTO chat_window (cwindow_no, name) VALUES (#{cwindow_no}, #{name})
+	</insert>
+
+	<select id="selectNameNoByCwindowNo" resultType="com.khacademy.khoffice.chat_window.models.ChatWindowHeadDTO">
+		SELECT cwindow_no AS cwindowNo, name AS cwindowName FROM chat_window WHERE cwindow_no= #{cwindowNo}
+	</select>
+	
+	<select id="deleteIfMemberZero" parameterType="com.khacademy.khoffice.chat_member.models.ChatMemberDTO" statementType="CALLABLE">
+		{CALL chk_mem_n_del_cwindow(#{cwindowNo,mode=IN,jdbcType=INTEGER})}
+	</select>
+	
+	<select id="deleteIfMessageZero" parameterType="com.khacademy.khoffice.chat_member.models.ChatMemberDTO" statementType="CALLABLE">
+		{CALL chk_mes_n_del_cwindow(#{cwindowNo,mode=IN,jdbcType=INTEGER})}
+	</select>
+	
+	<select id="selectByStartEnd" resultType="com.khacademy.khoffice.chat_window.models.ChatWindowDTO">
+		SELECT * FROM 
+		(SELECT cwindowNo, departmentNo, dName, memberNo, thumbPath, position, mName, cmessageNo, message, time, chatMemberCount, ROWNUM R FROM 
+		(SELECT CW.cwindow_no AS cwindowNo, D.department_no AS departmentNo, D.name AS dName, M.member_no AS memberNo, M.thumb_path AS thumbPath, M.position AS position, M.name AS mName, CMES.cmessage_no AS cmessageNo, CMES.message AS Message, T.MT AS time, T2.CT AS chatMemberCount 
+		FROM member M 
+		INNER JOIN chat_message CMES 
+		ON M.member_no = CMES.member_no 
+		INNER JOIN chat_window CW
+		ON CMES.cwindow_no = CW.cwindow_no 
+		INNER JOIN (SELECT cwindow_no, MAX(time) AS MT FROM chat_message GROUP BY cwindow_no) T 
+		ON CMES.time = T.MT AND CW.cwindow_no = T.cwindow_no 
+		INNER JOIN chat_member CMEM 
+		ON CW.cwindow_no = CMEM.cwindow_no 
+		INNER JOIN member M 
+		ON CMES.member_no = M.member_no 
+		INNER JOIN department D 
+		ON M.department_no = D.department_no 
+		INNER JOIN (SELECT cwindow_no, COUNT(1) AS CT FROM chat_member GROUP BY cwindow_no) T2 
+		ON CW.cwindow_no = T2.cwindow_no 
+		WHERE CMEM.member_no =  #{sessionId}
+		ORDER BY cwindow_no DESC))
+		WHERE R BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectCount" resultType="int">
+		SELECT COUNT(DISTINCT CW.cwindow_no) FROM 
+		chat_window CW
+		INNER JOIN chat_message CMES 
+		ON CW.cwindow_no = CMES.cwindow_no 
+		INNER JOIN chat_member CMEM 
+		ON CW.cwindow_no = CMEM.cwindow_no 
+		WHERE CMEM.member_no = #{sessionId}
+	</select>
+	
+</mapper>

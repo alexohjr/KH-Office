@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anonycomment">
+
+	<!-- 댓글 작성 -->
+	<insert id="insertAnonyComment" parameterType="com.khacademy.khoffice.anony_comment.models.AnonyCommentDTO"> 
+		insert into anony_comment (acomment_no,content,reg_date,aboard_no) 
+		values(anony_comment_SEQ.NEXTVAL,#{content},sysdate,#{aboard_no})
+	</insert>
+
+	<!--  댓글  상세보기 -->
+	<select id="AnonyCommentList"  parameterType="java.util.HashMap"  resultType="com.khacademy.khoffice.anony_comment.models.AnonyCommentDTO">
+		select * from (select ABOARD_NO, acomment_no, content, reg_date, rownum r from anony_comment where ABOARD_NO=#{aboard_no})
+		where r between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 댓글 갯수 -->
+	<select id="articleCountAnonyComment" resultType="int">
+		select count(*) from anony_comment where aboard_no= #{aboard_no}
+	</select>
+	
+	
+</mapper>  

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consult_approval_board">
+	<select id="getMyConreport_noList" parameterType="int" resultType="Integer">
+		select conreport_no from consult_approval where member_no=#{member_no}
+	</select>
+
+	<select id="getMyApprovalRowsByNo" parameterType="int" resultType="com.khacademy.khoffice.approval.models.ConsultApprovalBoardListDTO">
+		select v.conapproval_no,c.conreport_no,m.member_no,c.title,
+		c.reg_date,m.name approval_name,v.status,m2.name report_name,
+		m.position approval_position,m2.position report_position
+		from consult_approval v inner join consult_report c
+		on v.conreport_no=c.conreport_no inner join member m
+		on m.member_no=v.member_no inner join member m2
+		on m2.member_no=c.member_no where c.conreport_no=#{conreport_no}
+		order by v.conapproval_no
+	</select>
+
+	<!-- status값이 1로 넘어왔을때 승인하기위한 update -->
+	<update id="updateConApprovalStatus" parameterType="com.khacademy.khoffice.approval.models.ConsultApprovalUpdateStatusDTO">
+		update consult_approval set status=#{status} where conreport_no=#{conreport_no} and member_no=#{member_no}
+	</update>
+	
+	<!-- status값이 2로 넘어왔을때 전체 2로 update
+	<update id="updateConApprovalStatusOpposition" parameterType="com.khacademy.khoffice.approval.models.ConsultApprovalUpdateStatusDTO">
+		update consult_approval set status=#{status} where conreport_no=#{conreport_no}
+	</update> --> 
+	
+	<update id="updateLastApprovalStatus" parameterType="com.khacademy.khoffice.approval.models.ConsultApprovalUpdateStatusDTO">
+		update consult_approval set status=3 where conreport_no=#{conreport_no} and member_no=#{member_no}
+	</update>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vacation_approval_board">
+	<select id="getMyVacreport_noList" parameterType="int" resultType="Integer">
+		select vacreport_no from vacation_approval where member_no=#{member_no}
+	</select>
+	
+	<select id="getMyApprovalRowsByNo" parameterType="int" resultType="com.khacademy.khoffice.approval.models.VacationApprovalBoardListDTO">
+		select v.vacapproval_no,c.vacreport_no,m.member_no,c.type,
+		c.reg_date,m.name approval_name,v.status,m2.name report_name,
+		m.position approval_position, m2.position report_position
+		from vacation_approval v inner join vacation_report c
+		on v.vacreport_no=c.vacreport_no inner join member m
+		on m.member_no=v.member_no inner join member m2
+		on m2.member_no=c.member_no where c.vacreport_no=#{vacreport_no}
+		order by v.vacapproval_no
+	</select>
+	
+	<update id="updateVacApprovalStatus" parameterType="com.khacademy.khoffice.approval.models.VacationApprovalUpdateStatusDTO">
+		update vacation_approval set status=#{status} where vacreport_no=#{vacreport_no} and member_no=#{member_no}
+	</update>
+	
+	<update id="updateLastApprovalStatus" parameterType="com.khacademy.khoffice.approval.models.VacationApprovalUpdateStatusDTO">
+		update vacation_approval set status=3 where vacreport_no=#{vacreport_no} and member_no=#{member_no}
+	</update>
+</mapper>

@@ -1,0 +1,238 @@
+ul, li {
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+/* 전체 div */
+#mainWrapper {
+	padding: 50px 0; 
+}
+
+#mainWrapper:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/* 사원등록,메뉴바 */
+nav {
+	width: 200px;
+	float: left;
+	padding-right: 50px;
+	box-sizing: border-box;
+}
+
+
+.navBtn {
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid silver;
+	width: 100%;
+	display: block;
+	padding: 10px 0 10px 10px;
+	transition: all 0.2s; 
+}
+
+.navBtn:hover {
+	background-color: #eee;
+}
+
+#member_register {
+	margin-bottom: 30px;
+}
+
+#member_register_btn {
+	background-color: #1A237E;
+    border: 1px solid #1A237E;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+#member_register_btn:hover {
+	background-color: white;
+	color: black;
+}
+
+section {
+	float: left;
+	width: 1080px;
+	padding-left: 50px;
+	box-sizing: border-box;
+	border-left: 1px solid #ddd;
+}
+
+#ulTable {
+	content: "";
+	display: block;
+	clear: both;
+	padding-top: 30px;
+}
+
+#bookmark_sort, #list_sort {
+	background-color: #FFF;
+    border: 1px solid black;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    float: left;
+}
+
+.search_area {
+	width: fit-content;
+	float: right;	
+}
+
+.search_area #keyword {
+	height: 23.5px;
+    border: 1px solid #000;
+    padding-top: 3.5px;
+    padding-left: 8px;
+}
+
+.search_area .search_btn {
+	height: 30px;
+	background-color: #FFF;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+#column_title:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#column_title >li {
+	height: 35px;
+	line-height: 35px;
+}
+
+/*페이징 div */
+#pagingWrapper {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0;
+}
+
+/* 페이저 */
+.paging{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin: 0 1px;
+	border: 1px solid #dbdbdb;
+	color: #767676;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 20px;
+	vertical-align: middle;
+  text-decoration: none;
+}
+
+.paging:hover, 
+.paging:active, 
+.paging:focus{
+	border: 1px solid #1A237E;	
+}
+
+#prev{
+	background: url('http://leroro.net/images/ui/sp_btn_paging.gif') no-repeat;
+	background-position: left top;
+}
+
+#next{
+	background: url('http://leroro.net/images/ui/sp_btn_paging.gif') no-repeat;
+	background-position: right top;
+}
+
+#mainWrapper>ul>li:first-child {
+	text-align: center;
+	font-size: 11pt;
+	height: 40px;
+	vertical-align: middle;
+	line-height: 30px;
+}
+
+#ulTable>li:first-child>ul>li {
+	font-weight: bold;
+	text-align: center;
+}
+
+#ulTable>li>ul {
+	clear: both;
+	min-width: 40px;
+}
+
+#ulTable>li>ul>li {
+	float: left;
+	font-size: 10pt;
+	border-bottom: 1px solid silver;
+	vertical-align: baseline;
+}
+
+#ulTable>li>.memberContents {
+	padding-top: 10px;
+}
+
+#ulTable>li>.memberContents:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#ulTable>li>.memberContents>li {
+	height: 90px;
+	line-height: 90px;
+}
+
+#ulTable>li>ul>li:first-child {
+	width: 5%;
+}
+
+#ulTable>li>ul>li:first-child+li {
+	width: 15%;
+}
+
+#ulTable>li>ul>li:first-child+li+li {
+	width: 15%;
+}
+
+#ulTable>li>ul>li:first-child+li+li+li {
+	width: 15%;
+}
+
+#ulTable>li>ul>li:first-child+li+li+li+li {
+	width: 10%;
+}
+
+#ulTable>li>ul>li:first-child+li+li+li+li+li {
+	width: 25%;
+}
+
+#ulTable>li>ul>li:first-child+li+li+li+li+li+li {
+	width: 15%;
+}
+
+.thumbImg {
+	width: 75px;
+	height: auto;
+	max-width: 100px;
+	max-height: 80px;
+}
+
+.bookmark_btn {
+	max-width: 30px;
+	max-height: 30px;
+	cursor: pointer;
+}
+
+/*클릭되는 부분*/
+.clickArea{
+   cursor: pointer;
+}

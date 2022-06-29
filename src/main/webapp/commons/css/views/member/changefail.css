@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/*x이미지*/
+#iconimg{
+	text-align:center;
+	width: 80px;
+}
+
+/*내용*/
+#contents{
+	text-align:center;
+	margin-top: 100px;
+    margin-left: 33%;
+    margin-right: 33%;
+    font-size: 17px;
+    border-bottom: 1px solid silver;
+    padding-bottom: 50px;
+}
+
+/*돌아가기 버튼*/
+#backbtn{
+	text-align:center;
+	background-color: #1A237E;
+    border: 1px solid #1A237E;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 200px;
+    height: 50px;
+    margin: 20px auto;
+    display: block;
+}
+
+#backbtn:hover{
+	background-color: white;
+	color: black;
+}

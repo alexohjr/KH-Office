@@ -1,0 +1,244 @@
+@import url('./fonts/fonts.css');
+@import url('./reset/reset.css');
+
+/* 헤더부분만큼 바디 내리기 */
+#wrap {
+	padding-top: 150px;
+	width: 1280px;
+	margin: 0 auto;
+}
+
+/* 화면전환 효과 */
+/* keyframes 정의 */
+@keyframes circleLeft {
+  0%{
+    transform: translateX(-20px);
+  }
+  50%{
+    transform: translateX(20px);
+  }
+  100%{
+    transform: translateX(-20px);
+  }
+}
+@keyframes circleRight {
+  0%{
+    transform: translateX(20px);
+  }
+  50%{
+    transform: translateX(-20px);
+  }
+  100%{
+    transform: translateX(20px);
+  }
+}
+.loader-moving{
+  position: fixed;
+  width:100%;
+  height: 100%;
+  left:0;
+  top:0;
+  background: #fff;
+  z-index:100;
+  transition:all 1s;
+}
+.loader-moving > span{
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:20px;
+  height:20px;
+  border-radius: 100%;
+  margin:-10px 0 0;
+}
+.loader-moving > span.left{
+  background: olive;
+  transform: translateX(-30px);
+  animation:circleLeft 1s cubic-bezier(.645,.045,.355,1) infinite;
+}
+.loader-moving > span.right{
+  background: crimson;
+  transform: translateX(30px);
+  animation:circleRight 1s cubic-bezier(.645,.045,.355,1) infinite;
+}
+.loader-moving.end{
+  opacity: 0;
+  z-index:-1;
+}
+
+
+
+
+/* 사원선택모듈 디자인 */
+.member_select_area {
+	width: fit-content;
+}
+
+ .member_select_area ul li {
+	height: 25px;
+	box-sizing: border-box;
+	line-height: 25px;
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+.member_select_area .department_btn {
+	width: 14px;
+}
+
+.member_li {
+	margin-left: 20px;
+	cursor: pointer;
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+
+.member_li img {
+	width: 25px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+
+
+
+/* 시계위젯 디자인 */
+.clock-day:before {
+  content: var(--timer-day);
+}
+.clock-hours:before {
+  content: var(--timer-hours);
+}
+.clock-minutes:before {
+  content: var(--timer-minutes);
+}
+.clock-seconds:before {
+  content: var(--timer-seconds);
+}
+
+.clock-container {
+  width: 300px;
+  font-family: 'Montserrat', 'sans-serif';
+  background-color: #080808;
+  border-radius: 5px 5px 0 0;
+  padding: 40px 0 30px;
+  display: flex;
+}
+
+.clock-col {
+	text-align: center;
+	margin-right: 6px;
+    margin-left: 6px;
+    min-width: 60.5px;
+	position: relative;
+}
+ 
+/* .clock-col {
+  text-align: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  min-width: 90px;
+  position: relative;
+} */
+  
+.clock-col:not(:last-child):before, .clock-col:not(:last-child):after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.3);
+  height: 3px;
+  width: 3px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  right: -13px;
+}
+.clock-col:not(:last-child):before {
+  top: 20%;
+}
+.clock-col:not(:last-child):after {
+  top: 10%;
+}
+.clock-timer:before {
+  color: #fff;
+  font-size: 2.1rem;
+  text-transform: uppercase;
+}
+.clock-label {
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-size: .7rem;
+  margin-top: 7px;
+}
+
+@media (max-width: 825px) {
+  .clock-container {
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .clock-col + .clock-col {
+    margin-top: 20px;
+  }
+  .clock-col:before, .clock-col:after {
+    display: none !important;
+  }
+}
+
+/* 출퇴근 버튼 디자인 */
+.check_work_area {
+	position: fixed;
+   	top: calc(16% - 50px);
+    left: 10px;
+    width: 300px;
+     box-shadow: 1px 1px 1px rgba(255, 255, 255, 0.15), 0 2px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.check_work_area .btn_area {
+	width: 300px;
+}
+
+.check_work_area .btn_area:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.check_work_area .btn_area >button {
+	border: 1px solid #282828;
+	background-color: #FFF;
+	width: 50%;
+	height: 40px;
+	float: left;
+	box-sizing: border-box;
+	cursor: pointer;
+	transition: all 0.1s;
+}
+
+.check_work_area .btn_area>button:hover {
+	background-color: #282828;
+	color: #FFF;
+}
+
+.check_work_area .btn_area>button:active {
+	border-style: outset;
+}
+
+.check_work_area .btn_area>button:focus {
+	outline: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

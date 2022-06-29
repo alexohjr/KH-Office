@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat_message">
+
+	<select id="selectByCwinodwNo" resultType="com.khacademy.khoffice.chat_message.models.ChatMessageDTO">
+		SELECT CM.cmessage_no AS cmessageNo, CM.time AS time, CM.message AS
+		message, CM.member_no AS memberNo, M.thumb_path AS thumbPath,
+		M.position AS position, M.name AS name
+		FROM
+		member M INNER JOIN chat_message CM
+		ON M.member_no = CM.member_no
+		WHERE CM.cwindow_no = #{cwindowNo} AND CM.time &lt;= SYSDATE AND CM.time &gt;=
+		SYSDATE - 14
+		ORDER BY CM.time ASC
+	</select>
+
+	<insert id="insertOne" parameterType="com.khacademy.khoffice.chat_message.models.ChatMessageDTO">
+		<selectKey keyProperty="cmessageNo" resultType="int" order="BEFORE">
+			SELECT chat_message_seq.NEXTVAL FROM DUAL
+		</selectKey>
+			INSERT INTO chat_message (cmessage_no, time, message, member_no, cwindow_no)
+			VALUES (#{cmessageNo}, SYSDATE, #{message}, #{memberNo}, #{cwindowNo})
+	</insert>
+	
+	<select id="selectByCmessageNo" resultType="com.khacademy.khoffice.chat_message.models.ChatMessageDTO">
+		SELECT CM.cmessage_no AS cmessageNo, M.thumb_path AS thumbPath, M.position, M.name, CM.message, CM.time, CM.cwindow_no AS cwindowNo, M.member_no AS memberNo 
+		FROM member M 
+		INNER JOIN chat_message CM 
+		ON M.member_no = CM.member_no 
+		WHERE CM.cmessage_no = #{cmessageNo}
+	</select>
+
+</mapper>

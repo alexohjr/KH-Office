@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="address">
+
+	<!-- 리스트 조회 -->
+	<select id="selectAddressList" resultType="com.khacademy.khoffice.address.models.AddressDTO" parameterType="com.khacademy.khoffice.address.models.ListDTO">
+		select * FROM(
+		SELECT A.address_no, A.member_no, A.name, A.company, A.dept_position, A.email, A.phone, rownum r
+		FROM address A
+		<where> 
+			A.member_no = #{member_no}
+			<if test="keyword != null">
+				AND A.name like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		) T
+		<if test="is_bookmark == 1">
+		INNER JOIN address_bookmark AB
+		ON T.address_no = AB.address_no 
+		</if>
+		WHERE r between #{start} and #{end}
+	</select>
+	
+	<!-- 전체 행 수 조회 -->
+	<select id="selectAddressCount" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM address a
+		<where>
+			<if test='keyword != ""'>
+			 	name like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		<if test="is_bookmark == 1">
+			inner join 
+			(select * from address_bookmark 
+			where member_no = #{member_no}) b
+			on b.address_no = a.address_no
+		</if>
+		WHERE a.member_no = #{member_no}
+	</select>
+	
+	<!-- 북마크 리스트 조회 -->
+	<select id="selectBookmarkList" parameterType="int" resultType="com.khacademy.khoffice.address.models.BookmarkDTO">
+		SELECT * FROM address_bookmark WHERE member_no = #{member_no}
+	</select>
+	
+	<!-- 즐겨찾기 추가 -->
+	<update id="insertBookmark" parameterType="com.khacademy.khoffice.address.models.BookmarkDTO">
+		INSERT INTO address_bookmark VALUES
+		(#{member_no},#{address_no})
+	</update>
+	
+	<!-- 즐겨찾기 해제 -->
+	<delete id="deleteBookmark" parameterType="com.khacademy.khoffice.address.models.BookmarkDTO">
+		DELETE FROM address_bookmark
+        WHERE member_no = #{member_no} AND address_no = #{address_no}
+	</delete>
+	
+	<!-- 개인연락처 추가하기 -->
+	<insert id="insertAddress" parameterType="com.khacademy.khoffice.address.models.AddressDTO">
+		INSERT INTO address VALUES
+		(address_seq.nextval,#{member_no},#{name},#{company},#{dept_position},#{email},#{phone})
+	</insert>
+	
+	<!-- 개인연락처 수정하기 -->
+	<update id="updateAddress" parameterType="com.khacademy.khoffice.address.models.EditAddressDTO">
+		UPDATE address 
+		SET name = #{edit_name}, 
+			company = #{edit_company},
+			dept_position = #{edit_dept_position},
+			email = #{edit_email},
+			phone = #{edit_phone}
+		WHERE address_no = #{edit_address_no}
+	</update>
+	<!-- 개인연락처 삭제하기 -->
+	<delete id="deleteAddress" parameterType="int">
+		DELETE FROM address
+		WHERE address_no = #{address_no}
+	</delete>
+</mapper>

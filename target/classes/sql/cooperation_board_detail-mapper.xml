@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cooperation_board_detail">
+<select id="selectCooperationDetailByNum" parameterType="map" resultType="com.khacademy.khoffice.approval.models.CooperationReportAddFormDTO">
+   select m.name mname,c.reg_date,c.cooreport_no,d.name dname,
+   a.member_no,m2.department_no,c.deadline,c.title,c.content
+   from cooperation_report c inner join member m
+   on c.member_no=m.member_no inner join department d
+   on d.department_no=m.department_no inner join cooperation_approval a
+   on c.cooreport_no=a.cooreport_no inner join member m2
+    on m2.member_no=a.member_no where c.cooreport_no=#{cooreport_no}
+</select>
+
+<select id="getNameByMemberNo" parameterType="int" resultType="string">
+   select name from member where member_no=#{member_no}
+</select>
+
+<select id="getNameByDepartmentNo" parameterType="int" resultType="string">
+   select name from department where department_no=#{department_no}
+</select>
+</mapper>

@@ -1,0 +1,291 @@
+#wrap {
+	padding-top: 0;
+	max-width: calc(600px - 2px);
+}
+
+.cwindow_left_area {
+	border-right: 1px solid #ddd;
+	float: left;
+	width: 70%;
+	box-sizing: border-box;
+}
+
+/* 헤드 영역 */
+.cwindow_left_area .header_area {
+	height: 80px;
+	border-bottom: 1px solid #ddd;
+	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 메시지 출력 영역 */
+.cwindow_left_area .message_area {
+	height: 528px;
+	padding: 20px;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.cwindow_left_area .message_area >p {
+	animation: expand .5s ease-in-out;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.cwindow_left_area .message_area >p:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.cwindow_left_area .message_area >p >span.position_name {
+}
+
+.cwindow_left_area .message_area >p >span.message {
+	padding: 10px 15px;
+	box-sizing: border-box;
+	border: 1px solid black;
+	border-radius: 10px;
+	display: inline-block;
+}
+
+.cwindow_left_area .message_area >p >span.time {
+	visibility: visible;
+	font-size: 6px;
+}
+
+.cwindow_left_area .message_area >p:hover >span.time {
+	visibility: visible;
+}
+
+
+
+
+
+
+/* 남이 보낸 메시지의 경우 */
+.cwindow_left_area .message_area >p.other_message {
+	position: relative;
+}
+
+.cwindow_left_area .message_area >p.other_message >span {
+}
+
+.cwindow_left_area .message_area >p.other_message >span.thumb_path {
+	float: left;
+}
+
+.cwindow_left_area .message_area >p.other_message >span.position_name {
+	display: block;
+}
+
+.cwindow_left_area .message_area >p.other_message >span.message {
+	max-width: calc(100% - 150px);
+	margin-right: 8px;
+}
+
+.cwindow_left_area .message_area >p.other_message >span.time {
+	position: absolute;
+	bottom: 0;
+}
+
+
+
+
+
+
+/* 내기보낸 메시지의 경우 */
+.cwindow_left_area .message_area >p.my_message {
+	display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.cwindow_left_area .message_area >p.my_message >span {
+}
+
+.cwindow_left_area .message_area >p.my_message >span.message {
+	float: right;
+	display: inline-block;
+	max-width: calc(100% - 150px);
+	background-color: #FFEB33;
+	margin-left: 8px;
+}
+
+.cwindow_left_area .message_area >p.my_message >span.time {
+	float: right;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 메시지 박스 영역 */
+.cwindow_left_area .send_area {
+	padding: 10px;
+	box-sizing: border-box;
+	border-top: 1px solid #ddd;
+}
+
+.cwindow_left_area .send_area >textarea {
+	width: 80%;
+	padding: 5px 5px;
+	height: 70px;
+	float: left;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+}
+
+.cwindow_left_area .send_area >button {
+	width: 20%;
+	padding: 5px 5px;
+	float: left;
+	box-sizing: border-box;
+	height: 70px;
+	background-color: #1A237E;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.cwindow_right_area {
+	padding: 10px;
+	float: left;
+	width: 30%;
+	box-sizing: border-box;
+}
+
+/* 나가기 버튼 영역 */
+.cwindow_right_area .exit_btn_area {
+	height: 80px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: end;
+}
+
+.cwindow_right_area .exit_btn_area >button {
+	background-color: #1A237E;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+/* 참여인원 정보 영역 */
+.cwindow_right_area .member_info_area {
+	border: 1px solid #ddd;
+	height: 430px;
+	overflow-y: scroll;
+}
+
+.cwindow_right_area .member_info_area >p{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.cwindow_right_area .member_info_area >p >span{
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.cwindow_right_area .member_info_area >ul >li {
+	font-size: 12px;
+	letter-spacing: -2px;
+	margin-bottom: 10px;
+	
+	display: flex;
+	justify-content: start;
+	align-items: center;
+}
+
+/* 채팅멤버 초대 영역 */
+.cwindow_right_area .member_add_area {
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	position: absolute;
+	bottom: 0;
+	
+	font-size: 12px;
+	letter-spacing: -1px;
+}
+
+.cwindow_right_area .member_add_area >button {
+	background-color: #1A237E;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+/* 리스트에서 선택된 사원 */
+.member_select_area li.member_li.selected {
+	color: #ddd;
+}
+
+/* 썸네일 */
+.thumb_path {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	margin-right: 5px;
+}
+
+.thumb_path >img {
+	width: inherit;
+	height:  100%;
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.thumb_path >span{
+	width: inherit;
+	display: inline-block;
+	height: 100%;
+	
+	background-color: #1A237E;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: inherit;
+}
+
+@keyframes expand {
+  from {
+    transform: scale(0);
+    opacity: 0;
+    background: #5470B0;
+  }
+}
+
+
+

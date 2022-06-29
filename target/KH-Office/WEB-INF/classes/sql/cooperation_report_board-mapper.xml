@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cooperation_report_board">
+
+
+	<select id="cooperation_report_getForm" parameterType="int"
+		resultType="com.khacademy.khoffice.approval.models.CooperationReportAddFormDTO">
+		select m.name mname,d.name dname,sysdate reg_date
+		from member m inner join department d
+		on m.department_no = d.department_no where member_no=#{member_no}
+	</select>
+
+	<select id="select_CooreportNo" resultType="int">
+		select count(*)cooreport_no from cooperation_report
+	</select>
+
+
+	<!-- 페이징을 위한 업무협조요청서 정보 -->
+	<select id="cooperation_report_count" parameterType="int"
+		resultType="int">
+		select count(*) from cooperation_report
+		where member_no=#{member_no}
+	</select>
+
+	<!-- 페이징 게시판에 뿌릴 데이터들 -->
+	<select id="cooperation_report_list" parameterType="map"
+		resultType="com.khacademy.khoffice.approval.models.CooperationReportBoardListDTO">
+
+	select cooreport_no,title,status,reg_date,name,r from
+	(select c.cooreport_no,c.title,
+	ROW_NUMBER() OVER (PARTITION BY c.cooreport_no ORDER BY a.status desc)
+	as max_status,status,c.reg_date,m.name,r 
+	from cooreport_view c inner join member m
+	on m.member_no=c.member_no inner join cooperation_approval a
+	on a.cooreport_no=c.cooreport_no where r between #{start} and #{end}
+	and m.member_no=#{member_no} order by r) where max_status=1
+	
+	</select>
+</mapper>

@@ -1,0 +1,212 @@
+/*등록 전체 폼*/
+#register_form{
+	border-top:3px solid black;
+	padding-bottom: 200px;
+}
+
+/*사원등록 레이블*/
+#registerLabel{
+	font-size: 23px;
+	font-weight: bold;
+	margin-top: 50px;
+    margin-bottom: 14px;
+	display: block;
+}
+
+/*모든 li*/
+#register_form > ul > li {
+	display:flex;
+	border-bottom:1px solid #ddd;
+}
+/*모든 li after*/
+#register_form > ul > li:after {
+	display:block;
+	content:"";
+	clear:both;
+}
+
+/* 프로필 사진 */
+.profile_img{
+	width: auto;
+	height: auto;
+	max-width: 120px;
+	max-height: 150px;
+}
+
+/*사진선택 버튼*/
+#uploadFile{
+	display:block;
+}
+
+/*360*240 어쩌고 */
+#textLabel{
+	display:block;
+}
+
+/*인풋들*/
+.inputSmall{
+	width:100px;
+	height:30px;
+	padding-left: 10px;
+}
+
+.inputBig{
+	width:200px;
+	height:30px;
+	padding-left: 10px;
+}
+
+/*수정불가능한 readonly 정보*/
+.fixedInfo{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/*이메일 중복확인 메시지 span 태그*/
+#check_message{	
+	margin: 33px;
+}
+#ok{
+	color:blue;
+}
+#no{
+	color:red;
+}
+
+/*제목컬럼*/
+.title{
+	float: left;
+	font-weight: bold;
+    width: 100px;
+    box-sizing: border-box;
+    line-height: 50px;
+    border-right: 1px solid #ddd;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+}
+
+/*내용컬럼*/
+.contents{
+	float:left;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contents >span {
+	display: flex;
+    align-items: center;
+}
+
+.contents >span:first-child {
+	margin-bottom: 15px;
+}
+
+.contents >span:last-child >input:first-child {
+	margin-right: 10px;
+}
+
+/*버튼span*/
+#buttonArea{
+	display: block;
+    width: fit-content;
+    margin: 30px auto;
+}
+
+
+/*수정버튼 */
+#submit_btn{
+	margin-right: 10px;
+	width: 82px;
+    height: 38px;
+    background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#submit_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+/*삭제버튼*/
+#cancel_btn{
+	margin-right: 10px;
+	width: 82px;
+    height: 38px;
+    background-color: white;
+	color: black;
+	border: 1px solid #ddd;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#cancel_btn:hover{
+	background-color: #1A237E;
+    color: white;
+}
+
+
+/*우편번호찾기버튼*/
+#findZipcode_btn{
+	width: 120px;
+    height: 38px;
+    background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-left: 10px;
+}
+#findZipcode_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+
+
+
+/*라디오버튼들*/
+.radio-label{
+    margin-right: 15px;
+}
+
+.radioButtons input[type="radio"]{
+	position: absolute;
+	opacity: 0;
+}
+
+.radioButtons input[type="radio"] + .radio-label:before  {
+	content: '';
+	background: #f4f4f4;
+	border-radius: 100%;
+	border: 1px solid #b4b4b4;
+	display: inline-block;
+	width: 1.4em;
+	height: 1.4em;
+	margin-right: 1em;
+	cursor: pointer;
+	text-align: center;
+}
+
+.radioButtons input[type="radio"]:checked + .radio-label:before {
+	background-color: #283442;
+	box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+	
+.radioButtons input[type="radio"]:focus + .radio-label:before {
+	outline: none;
+ 	border-color: #283442;
+}
+
+.radioButtons input[type="radio"] + .radio-label:empty:before {
+	margin-right: 0;
+}
+
+

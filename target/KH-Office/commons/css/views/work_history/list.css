@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+#wrap {
+	padding-top: 89px;
+}
+
+td, th {vertical-align: middle;}
+
+html,body,button,dl,dt,dd,div,form,fieldset,legend,h1,h2,h3,h4,h5,h6,input,select,textarea,ul,ol,li,p,pre,table,td,th,caption,a,button{margin:0;padding:0;}
+html,body{background-color:#fff;}
+h1,h2,h3,h4,h5,h6{font-weight:normal}
+/* body{font-size:16px; color:#666666; font-family:NanumGothic, sans-serif; font-weight: 400;} */
+input, textarea{vertical-align:middle;  font-family:NanumGothic, sans-serif; font-weight: 400;}
+a {color:#333; text-decoration:none;}
+a:hover {text-decoration: none;color: inherit;}
+a:focus {text-decoration: none;color: inherit;}
+ul,ol,li{list-style:none;}
+img{max-width: 100%;border:0;vertical-align:middle;} 
+table{border-collapse:collapse;border-spacing:0;}
+caption{visibility:hidden; font-size:0; line-height:0; opacity:0; height:0; overflow:hidden;}
+em{font-style:normal;}
+
+.clearfix{*zoom:1}
+.clearfix:before,
+.clearfix:after{content:" "; display:table}
+.clearfix:after{clear:both}
+.op3 {opacity: 0.3;}
+
+/* input box color */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; } 
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+
+
+
+/********************/
+
+#work_history_list_wrap {}
+#work_history_list_wrap .contentbox {width: 1200px;}
+#work_history_list_wrap .left_menu {width: 200px; height: 1000px; float: left; background-color:#ebf2ff; border-right: 1px solid #d8e0f0;}
+#work_history_list_wrap .left_menu_inner {padding: 20px;}
+#work_history_list_wrap .left_menu h1 {/* font-size: 24px; color:#1f1f1f; margin-bottom: 50px; */font-size: 21px; font-family: NanumGothicBold; color: #424242; margin-bottom: 50px; font-weight: bold;}
+#work_history_list_wrap .left_menu h2 {font-size: 18px; color:#1f1f1f; margin-bottom: 10px;}
+#work_history_list_wrap .left_menu ul {}
+#work_history_list_wrap .left_menu ul li {margin-bottom: 8px; font-size: 16px;}
+#work_history_list_wrap .right_content {width: 900px; float: left;}
+#work_history_list_wrap .right_content_inner {padding:50px;}
+#work_history_list_wrap .right_content_inner h2 {font-weight:bold; font-size:25px; margin-bottom:35px;}
+#approval_report_go {float:right; margin-right:30px; margin-bottom:30px;}
+
+
+
+/**********admin_work_history_list**********/
+table.admin_work_history_list {overflow:hidden; width:1500px; margin:0 auto; font-family: NanumGothic; margin-bottom:20px; border-top: 2px solid #3b3b3b;}
+.admin_list_table_wrap {width: 970px; overflow: hidden; overflow-x:scroll;}
+table.admin_work_history_list th {height: 45px; background:#f7f7f7; font-size: 13px; color:#313131; border:0; border-bottom:1px solid #BABABA; border-left: 1px solid #DCDCDC;}
+table.admin_work_history_list th.bdl {border-left: none;}
+table.admin_work_history_list td {width:30px; height: 25px; text-align: center; font-size: 13px; color:#424242; border:0; border-bottom:1px solid #c8c8c8; border-left: 1px solid #DCDCDC;}
+/* table.admin_work_history_list td.history_member_info:hover {background-color:#FFF;} */
+table.admin_work_history_list td.bdl {border-left: none;}
+table.admin_work_history_list tr {height:30px;}
+table.admin_work_history_list tr:hover {background-color:#f5f5f5;}
+table.admin_work_history_list td.li_local {font-size: 13px; color:#5a5a5a;}
+table.admin_work_history_list td.li_no, table td.li_date {font-family: tahoma; color: #5a5a5a; line-height: 10px;}
+table.admin_work_history_list td.li_tit {text-align: left; padding-left: 22px;}
+table.admin_work_history_list td.li_name{}
+table.admin_work_history_list td.li_status{font-size: 12px;}
+table.admin_work_history_list img {margin-left:5px;background-color:#FFF;}
+.history_member_info img {border-radius: 50%; width: 35px; height:35px;}
+
+
+table.admin_work_history_list td.todayCheck {background-color : rgba(119,155,232,0.1); font-weight:bold; color:#1A237E; border: 1px solid #c8c8c8;	}
+table.admin_work_history_list th.todaySaturday {color:blue; font-weight:bold;}
+table.admin_work_history_list th.todaySunday {color:red; font-weight:bold;}
+table.admin_work_history_list span.todaySunday_days {margin-top: -7px; display: block; font-size: 11px;}
+table.admin_work_history_list span.todaySaturday_days {display:block;}
+
+
+
+/* 상태표시
+table.work_history_detail td.li_status .status_com, table.work_history_detail td.li_status .status_ing, table.work_history_detail td.li_status .status_turn {display: inline-block; width: 70px; line-height: 30px;text-align: center; border-radius: 3px;}
+.status_com {background-color: #4b52eb;}
+.status_ing {background-color: #11b26c;}
+.status_turn {background-color: #eb4b53;}
+.status_wait {background-color: #394a00;} */ 
+
+
+/* date-picker 영역 */
+
+#work_history_list_wrap .right_content_inner_YMD {text-align: center; margin-bottom: 20px; font-size: large;}
+/* #work_history_list_wrap .right_content_inner_YMD img {display: block;} */
+#work_history_list_wrap .right_content_inner_YM {font-size:15px;}
+#work_history_list_wrap .right_content_inner_YM i {font-family: tahoma; font-weight:bold; font-size:16px; font-style:normal}
+
+.YMD_left_arrow {margin-right: 44px;}
+.YMD_left_arrow2 {margin-right:16px;}
+.YMD_right_arrow {margin-left: 44px;}
+.YMD_right_arrow2 {margin-left:16px;}
+.ui-datepicker-calendar {display: none;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display: none;}
+.ui-datepicker-trigger{cursor:pointer; }
+
+
+/* history_member_info -> td영역 */
+
+.td_start_work {}
+.td_end_work {}
+.td_work_time {}
+/* table tr.tr_memo td {border-bottom:1.2px solid;}
+table tr.tr_start_work td.history_member_info {border-bottom:1.2px solid;}
+table.admin_work_history_list th {border-bottom:1.2px solid;} */
+
+
+
+
+/**********left_menu_inner********/
+
+.right_content_inner_top {margin-bottom:30px;}
+.right_content_inner_top h3 {font-size: 16px;}
+.tab_menu{position:relative;height:29px;margin-top:20px;background:url(http://static.naver.com/groupware/common/tab_menu.gif) repeat-x 0 100%;font-family:'돋움',dotum;font-size:12px}
+.tab_menu ul,.tab_menu ul li{margin:0;padding:0}
+.tab_menu ul li{list-style:none}
+.tab_menu ul li,.tab_menu ul li a{background:url(http://static.naver.com/groupware/2010/bg_tab2_off.gif) no-repeat}
+.tab_menu ul li{float:left;margin-right:-1px;line-height:26px}
+.tab_menu ul li a{display:inline-block;padding:2px 16px 1px;_padding:3px 16px 0;background-position: 100% 0;font-weight:bold;color:#666;text-decoration:none !important}
+.tab_menu ul li a:hover{color:#000}
+.tab_menu ul li.on,.tab_menu ul li.on a{background-image:url(http://static.naver.com/groupware/2010/bg_tab2_on.gif)}
+.tab_menu ul li.on a{color:#4b52eb}
+
+/**********paging_area**********/
+.paging_area {margin-top: 40px; width:100%; text-align:center;}
+.paging_area .left_arrow, .paging_area .right_arrow{display:inline-block;}
+.paging_area .left_arrow {margin-right: 15px;}
+.paging_area .right_arrow {margin-left: 15px;}
+.paging_area span.page_arrow{margin:0 1px;}
+.paging_area a.page_num {display:inline-block; width: 22px; text-align: center; font-family:'Tahoma'; font-weight: bold; font-size:14px; color:#3a3a3a; height:18px; line-height:18px;}
+.paging_area a.page_num span {display: inline-block; padding-bottom: 2px; padding-left: 2px; padding-right: 2px;}
+.paging_area a.page_num.on span {color:#075ce0; border-bottom:1px solid #075ce0;}
+.paging_area a.page_num span:hover {color:#075ce0; border-bottom:1px solid #075ce0;}
+

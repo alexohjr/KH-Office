@@ -1,0 +1,85 @@
+.admin_input {
+   display : none;
+}
+
+#login_wrap {
+	width: 400px;
+	margin: 0 auto;
+}
+
+/* 타이틀 영역 */
+.title_area {
+	padding: 50px 0;
+	letter-spacing: 56px;
+	overflow: hidden;
+}
+
+.title_area h2 {
+	width: fit-content;
+	margin: 0 auto;
+	color: #000;
+	font-size: 56px;
+    font-weight: 800;
+}
+
+/* 탭 영역 */
+.tab_area {
+	border-bottom: 3px solid BLACK;
+}
+
+.tab_area ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.tab_area ul li {
+	width: 50%;
+	box-sizing: border-box;
+	float: left;
+	padding: 10px 0;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+	transition: all 0.2s;
+}
+
+.tab_area ul li.on {
+	background-color: #000;
+	color: #FFF;
+}
+
+/* 입력란 영역 */
+.input_area {
+	padding-top: 20px;
+}
+
+.input_area form input:not([type=submit]) {
+	width: 100%;
+	height: 35px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	padding-left: 8px;
+}
+
+.input_area form input[type=submit] {
+	width: 100%;
+	height: 40px;
+	background-color: #000000;
+	color: #FFF;
+	border: 1px solid #000000;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.input_area form input[type=submit]:hover {
+	color: #000;
+	background-color: #FFF;
+}
+
+/* 정보영역 */
+.info_area {
+	padding: 20px;
+}

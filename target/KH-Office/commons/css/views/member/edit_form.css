@@ -1,0 +1,215 @@
+@charset "UTF-8";
+
+#edit_form{
+	border-top:3px solid black;
+	padding-bottom: 200px;
+}
+/*수정페이지 레이블*/
+#editLabel{
+	font-size: 23px;
+	font-weight: bold;
+	margin-top: 50px;
+    margin-bottom: 14px;
+	display: block;
+}
+
+/* 프로필 사진 */
+.profile_img{
+	width: auto;
+	height: auto;
+	max-width: 120px;
+	max-height: 150px;
+}
+
+.imgArea {
+	display: flex;
+    align-items: flex-end;
+}
+
+/*모든 li*/
+#edit_form > ul > li {
+	display:flex;
+	border-bottom:1px solid #ddd;
+}
+/*모든 li after*/
+#edit_form > ul > li:after {
+	display:block;
+	content:"";
+	clear:both;
+}
+
+/*인풋들*/
+.inputSmall{
+	width:100px;
+	height:30px;
+	padding-left: 10px;
+}
+
+.inputBig{
+	width:145px;
+	height:30px;
+	padding-left: 10px;
+}
+
+#edit_form > ul{
+	padding-bottom:30px;
+}
+
+/*업로드 파일 인풋*/
+#uploadFile{
+	display:none;
+	margin-top: 10px;
+}
+
+
+/*수정불가능한 readonly 정보*/
+.fixedInfo{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/*제목컬럼*/
+.title{
+	float: left;
+	font-weight: bold;
+    width: 100px;
+    box-sizing: border-box;
+    line-height: 50px;
+    border-right: 1px solid #ddd;
+    padding-top: 18px;
+}
+
+/*내용컬럼*/
+.contents{
+	float:left;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*360*240 어쩌고 */
+#textLabel{
+	display:block;
+}
+
+/*버튼span*/
+#buttonArea{
+	display: block;
+    width: fit-content;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+
+/*수정버튼 */
+#edit_btn{
+	margin-right: 10px;
+	width: 82px;
+    height: 38px;
+    background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#edit_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+/*삭제버튼*/
+#cancel_btn{
+	margin-right: 10px;
+	width: 82px;
+    height: 38px;
+    background-color: white;
+	color: black;
+	border: 1px solid #ddd;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#cancel_btn:hover{
+	background-color: #1A237E;
+    color: white;
+}
+
+
+/*사진변경버튼*/
+#imgEdit_btn{
+	width: 82px;
+    height: 38px;
+    background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-left: 10px;
+}
+
+#imgEdit_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+/*우편번호찾기버튼*/
+#findZipcode_btn{
+	width: 120px;
+    height: 38px;
+    background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    margin-left: 10px;
+}
+#findZipcode_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+
+
+
+/*라디오버튼들*/
+.radio-label{
+    margin-right: 15px;
+}
+
+.radioButtons input[type="radio"]{
+	position: absolute;
+	opacity: 0;
+}
+
+.radioButtons input[type="radio"] + .radio-label:before  {
+	content: '';
+	background: #f4f4f4;
+	border-radius: 100%;
+	border: 1px solid #b4b4b4;
+	display: inline-block;
+	width: 1.4em;
+	height: 1.4em;
+	margin-right: 1em;
+	cursor: pointer;
+	text-align: center;
+}
+
+.radioButtons input[type="radio"]:checked + .radio-label:before {
+	background-color: #283442;
+	box-shadow: inset 0 0 0 4px #f4f4f4;
+}
+	
+.radioButtons input[type="radio"]:focus + .radio-label:before {
+	outline: none;
+ 	border-color: #283442;
+}
+
+.radioButtons input[type="radio"] + .radio-label:empty:before {
+	margin-right: 0;
+}
+

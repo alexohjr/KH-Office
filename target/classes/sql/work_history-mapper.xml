@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work_history">
+	
+	<!-- 출근버튼 클릭했을때, 내 member_no를 들고 SYSDATE값으로 insert -->
+	<insert id="insertStartTimeByMemberNo" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="start_time,work_history_no,start_ip" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where member_no=#{member_no} and start_time=SYSDATE
+		</selectKey>
+		
+		insert into work_history(work_history_no,start_time,start_ip,member_no) 
+				values(work_history_seq.NEXTVAL,SYSDATE,#{start_ip},#{member_no})
+	</insert>
+	
+	<update id="insertEndTimeByMemberNo" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="start_time,end_time,work_history_no,start_ip,end_ip" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where member_no=#{member_no} and end_time=SYSDATE
+		</selectKey>
+		
+		update work_history 
+		set end_time=SYSDATE, 
+		end_ip=#{end_ip} 
+		where member_no=#{member_no} 
+		and work_history_no=#{work_history_no}
+	</update>
+	
+	<!-- 내 member_no를 들고 전체 work_history list 다 가져오기.
+		너무 무거울것같은데 controller에서 year + month 가져와서 좀더 압축하는게 좋을듯함.
+	  -->
+	<select id="selectWorkHistoryByMemberNo" parameterType="int" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		select * from work_history where member_no=#{member_no}
+	</select>
+	
+	<!-- 상태(memo)를 클릭해서 값을 입력할시 update한 후 바뀐값을 다시 들고간다. -->
+	<update id="updateMemoByNo" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="work_history_no,memo" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where member_no=#{member_no} and work_history_no=#{work_history_no}
+		</selectKey>
+		
+		update work_history set memo=#{memo} where member_no=#{member_no} and work_history_no=#{work_history_no}
+	</update>
+	
+	<select id="todayHasStartWork" parameterType="int" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		select work_history_no,start_time,end_time from work_history where member_no=#{member_no} 
+		and to_char(start_time,'YYYY-MM-DD') = (select to_char(SYSDATE,'YYYY-MM-DD') from dual)
+	</select>
+	
+	<select id="allSelectWorkHistoryList" parameterType="map" resultType="com.khacademy.khoffice.work_history.models.AdminWorkHistoryDTO">
+		
+		select w.work_history_no,d.name dname,m.position,m.name mname,m.thumb_path,
+		w.start_time,w.end_time,
+        to_char(w.start_time,'HH24:MI') as startTime,
+		to_char(w.end_time,'HH24:MI') as endTime
+        ,w.memo,m.member_no
+		from work_history w inner join member m
+		on w.member_no=m.member_no inner join department d
+		on d.department_no=m.department_no 
+		where m.member_no=#{member_no}
+		and start_time
+		between to_date(#{addedYMD}, 'YYYY/MM/DD') 
+		and (select to_char(last_day(to_date(#{addedYMD}, 'yyyy/mm/dd')), 'yyyy/mm/dd')
+		last_day from dual)
+		order by start_time
+		
+		<!-- 
+		TRUNC(A.날짜컬럼) BETWEEN 
+		TO_DATE(#{FROM_DT}, 'YYYYMMDD') AND TO_DATE(#{TO_DT}, 'YYYYMMDD') 
+		
+		
+		A.날짜컬럼이 PK라면
+		AND A.날짜컬럼 BETWEEN TO_DATE(#{FROM_DT} || '000000', 'YYYYMMDDHH24MISS') 
+        AND  TO_DATE(#{TO_DT} || '235959', 'YYYYMMDDHH24MISS')
+
+		A.날짜컬럼이 PK가 아니라면
+		AND TRUNC(A.날짜컬럼) BETWEEN TO_DATE(#{FROM_DT}, 'YYYYMMDD')
+       	AND TO_DATE(#{TO_DT}, 'YYYYMMDD') 
+		
+		
+		 -->
+	</select>
+	
+	<select id="selectWorkHistoryByHistoryNo" parameterType="string" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		select * from work_history where work_history_no=#{work_history_no}
+	</select>
+	
+	<update id="updateStartTimeByAdmin" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="start_time,end_time,work_history_no,start_ip,end_ip" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where work_history_no=#{work_history_no}
+		</selectKey>
+		UPDATE work_history SET start_time=TO_DATE(#{strStart}, 'YYYY/MM/DD HH24:MI:SS') where work_history_no=#{work_history_no}
+	</update>
+	
+	<update id="updateEndTimeByAdmin" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="start_time,end_time,work_history_no,start_ip,end_ip" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where work_history_no=#{work_history_no}
+		</selectKey>
+		UPDATE work_history SET end_time=TO_DATE(#{strEnd}, 'YYYY/MM/DD HH24:MI:SS'), end_ip=#{end_ip} where work_history_no=#{work_history_no}
+	</update>
+	
+	<insert id="insertAdminStartTimeByMemberNo" parameterType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO">
+		<selectKey keyProperty="start_time,work_history_no,start_ip" resultType="com.khacademy.khoffice.work_history.models.WorkHistoryDTO" order="AFTER">  
+			select * from work_history where member_no=#{member_no} and start_time=TO_DATE(#{strStart}, 'YYYY/MM/DD HH24:MI:SS')
+		</selectKey>
+		
+		insert into work_history(work_history_no,start_time,start_ip,member_no) 
+				values(work_history_seq.NEXTVAL,TO_DATE(#{strStart}, 'YYYY/MM/DD HH24:MI:SS'),#{start_ip},#{member_no})
+	</insert>
+	
+	<delete id ="deleteAdminByWorkHistoryNo" parameterType="string">
+		delete from work_history where work_history_no=#{work_history_no}
+	</delete>
+	
+</mapper>
+
+

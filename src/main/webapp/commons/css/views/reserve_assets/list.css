@@ -1,0 +1,122 @@
+#wrap {
+	padding-top: 150px;
+	padding-bottom: 50px;
+}
+
+#datepicker {
+	height: 39px;
+    border-radius: 0.25rem;
+    border: 1px solid #6c757d;
+    padding-left: 8px;
+}
+
+.reserve_table {
+	width: 100%;
+	border-top: 1px solid #333;
+	border-collapse: collapse;
+	margin-bottom: 30px;
+}
+
+.holding_table {
+	width: 100%;
+	border: 1px solid #333;
+	border-collapse: collapse;
+}
+
+.reserve_th {
+	border-bottom: 3px double #333;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.reserve_td {
+	border-bottom: 1px solid #333;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.holding_div {
+	width: 1000px;
+	margin-left: 140px;
+	margin-top: 30px;
+}
+
+.holding_tr {
+	border-left: 1px solid #333;
+	border-top: 1px solid #333;
+}
+
+.holding_div >table.holding_table >tbody >tr.holding_tr >th {
+	height: 30px;
+	line-height: 30px;
+}
+
+.holding_table >tbody >tr >td {
+	height: 50px;
+	line-height: 50px;
+}
+
+.none {
+	background: #E8FFDF;
+	border-left: 1px solid #333;
+	border-top: 1px solid #333;
+}
+
+.reserve {
+	color: #FFF;
+	background: #283442;
+	border-left: 1px solid #333;
+	border-top: 1px solid #333;
+}
+.button_submit {
+	padding: 5px 10px;
+    background-color: #FFF;
+    color: #1A237E;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.button_submit#reserve_form {
+	padding: 5px 30px;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.button_submit:hover {
+	color: #FFF;
+	background-color: #1A237E;
+}
+
+.button_submit#reserve_form:hover {
+    background-color: #FFF;
+    color: #1A237E;
+}
+
+h2 {
+	font-size: 26px;
+    font-weight: 600;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333333;
+    text-align: left;
+}
+
+h3 {
+	font-size: 22px;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+.reserve_button {
+	margin-top: 50px;
+}
+
+.no_reserve_message {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 0;
+}

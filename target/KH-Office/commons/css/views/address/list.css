@@ -1,0 +1,350 @@
+/* 사원등록, 메뉴바 */
+#mainWrapper nav {
+	width: 200px;
+	float: left;
+	padding-right: 50px;
+	box-sizing: border-box;
+}
+
+#mainWrapper section {
+	float: left;
+	width: 1080px;
+	padding-left: 50px;
+	box-sizing: border-box;
+	border-left: 1px solid #ddd;
+	padding-top: 50px;
+}
+
+#mainWrapper section:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+.navBtn {
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid silver;
+	width: 100%;
+	display: block;
+	padding: 10px 0 10px 10px;
+	transition: all 0.2s; 
+}
+
+.navBtn:hover {
+	background-color: #eee;
+}
+
+/* 연락처 추가 폼 */
+#add_area {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 50px;
+	margin-bottom: 50px;
+}
+
+#add_area >form >ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#add_area >form >ul >li {
+	width: 33.3%;
+	box-sizing: border-box;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#add_area >form >ul >li >label {
+	width: 30%;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#add_area >form >ul >li >input {
+	height: 30px;
+	padding-left: 8px;
+	width: 70%;
+	box-sizing: border-box;
+}
+
+#add_area >form #add_btn {
+	border: 1px solid #1A237E;
+	background-color: #1A237E;
+	color: #FFF;
+	padding: 10px 50px;
+	transition: all 0.2s;
+	cursor: pointer;
+	display: block;
+	margin: 10px auto 0;
+}
+
+#add_area >form #add_btn:hover {
+	background-color: #FFF;
+	color: #1A237E;
+}
+
+/* 즐겨찾기 보기 */
+#bookmark_form {
+	width: fit-content;
+	float: left;
+}
+
+#bookmark_form #bookmark_sort, #list_form #list_sort {
+	border: 1px solid #1A237E;
+	background-color: #FFF;
+	color: #1A237E;
+	padding:5px 10px;
+	transition: all 0.2s;
+	cursor: pointer;
+	display: block;
+} 
+
+#bookmark_form #bookmark_sort:hover, #list_form #list_sort:hover {
+	background-color: #1A237E;
+	color: #FFF;
+}
+
+/* 전체 보기 */
+#list_form {
+	width: fit-content;
+	float: left;
+}
+
+/* 검색폼 */
+.search_area {
+	width: fit-content;
+	float: right;
+}
+
+.search_area #keyword {
+	height: 23.5px;
+    border: 1px solid #000;
+    padding-top: 3.5px;
+    padding-left: 8px;
+}
+
+.search_area .search_btn {
+	height: 30px;
+    background-color: #FFF;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+/* 목록 */
+#ulTable {
+	content: "";
+	display: block;
+	clear: both;
+	padding-top: 30px;
+}
+
+#ulTable >li:first-child {
+}
+
+#ulTable >li >ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+/* 목록 레이블 영역 */
+#ulTable >li >ul >li {
+	box-sizing: border-box;
+	float: left;
+	border-bottom: 1px solid silver;
+	height: 35px;
+    line-height: 35px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#ulTable >li >ul >li.bookmark_label {
+	width: 5%;
+}
+#ulTable >li >ul >li.name_label {
+	width: 10%;
+}
+#ulTable >li >ul >li.company_label {
+	width: 15%;
+}
+#ulTable >li >ul >li.position_label {
+	width: 15%;
+}
+#ulTable >li >ul >li.email_label {
+	width: 20%;
+}
+#ulTable >li >ul >li.phone_label {
+	width: 20%;
+}
+#ulTable >li >ul >li.btn_label {
+	width: 15%;
+}
+
+#ulTable >li form >ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+
+
+/* 목록부분 div */
+#list_area{
+	margin-top:50px;
+}
+
+
+
+/* 목록 영역 */
+#ulTable >li form >ul >li {
+	box-sizing: border-box;
+	float: left;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid silver;
+}
+
+#ulTable >li form >ul >li >input:not([class$="_btn"]) {
+	width: 80%;
+}
+
+#ulTable >li form >ul >li:nth-child(1) {
+	width: 5%;
+}
+#ulTable >li form >ul >li:nth-child(2) {
+	width: 10%;
+}
+#ulTable >li form >ul >li:nth-child(3) {
+	width: 15%;
+}
+#ulTable >li form >ul >li:nth-child(4) {
+	width: 15%;
+}
+#ulTable >li form >ul >li:nth-child(5) {
+	width: 20%;
+}
+#ulTable >li form >ul >li:nth-child(6) {
+	width: 20%;
+}
+#ulTable >li form >ul >li:nth-child(7) {
+	width: 15%;
+}
+
+#ulTable >li form:last-child {
+	display: none;
+}
+
+
+
+/* 목록의 수정 버튼 */
+.edit_btn{
+	background-color: white;
+	color: #4c4c4c;
+	border: 1px solid #b5b5b5;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 50px;
+    height: 30px;
+    margin: 0px;
+    font-size: 12px;
+}
+.edit_btn:hover{
+	background-color: #464646;
+    color: white;
+}
+
+/* 목록의 삭제 버튼 */
+.delete_btn{
+	background-color: #464646;
+    border: 1px solid #b5b5b5;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 50px;
+    height: 30px;
+    margin: 0px;
+    font-size: 12px;
+}
+.delete_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+
+/* 페이저 */
+#pagingWrapper {
+	margin-top: 15px;
+	text-align: center;
+	font-size: 0;
+}
+
+/* 페이저 */
+.paging{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	margin: 0 1px;
+	border: 1px solid #dbdbdb;
+	color: #767676;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 20px;
+	vertical-align: middle;
+  text-decoration: none;
+}
+
+.paging:hover, 
+.paging:active, 
+.paging:focus{
+	border: 1px solid #1A237E;	
+}
+
+
+
+/*북마크 버튼*/
+.bookmark_btn {
+	max-width: 30px;
+	max-height: 30px;
+	cursor: pointer;
+	margin: 10px;
+}
+
+/* cancel_btn 버튼 */
+
+.save_btn{
+   background-color: white;
+   color: #4c4c4c;
+   border: 1px solid #b5b5b5;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 50px;
+    height: 30px;
+    margin: 0px;
+    font-size: 12px;
+}
+.save_btn:hover{
+   background-color: #464646;
+    color: white;
+}
+.cancel_btn{
+   background-color: #464646;
+    border: 1px solid #b5b5b5;
+    color: white;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 50px;
+    height: 30px;
+    margin: 0px;
+    font-size: 12px;
+}
+
+.cancel_btn:hover{
+   background-color: white;
+   color: black;
+}

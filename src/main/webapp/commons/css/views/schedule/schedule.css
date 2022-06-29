@@ -1,0 +1,173 @@
+.schedule {
+	background: #6ebd6e;
+	color: white;
+	cursor: pointer;
+}
+
+.project {
+	background: #ffafaf;
+	color: white;
+}
+
+.vacation {
+	background: #779aec;
+	color: white;
+}
+
+#company_schedule {
+	z-index: 500;
+	margin-bottom: 50px;
+}
+
+.ui-datepicker-calendar {
+	display: none;
+}
+
+#content {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.schedule_table_button {
+	display: flex;
+    justify-content: flex-end;
+    margin: 30px 0;
+}
+
+.schedule_table_button .goto_today_btn {
+	padding: 5px 15px;
+    background-color: #FFF;
+    color: #1A237E;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.schedule_table_button .goto_today_btn:hover {
+	background-color: #1A237E;
+    color: #FFF;	
+}
+
+.schedule_table_button .add_schedule_btn {
+	padding: 5px 15px;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.schedule_table_button .add_schedule_btn:hover {
+	background-color: #FFF;
+    color: #1A237E;
+}
+
+.schedule_table_picker {
+	width: 100%;
+	border: 0;
+}
+
+.schedule_table_date {
+	border: 0;
+	cellspacing: 1px;
+	cellpadding: 1px;
+	bgcolor: #FFFFFF;
+}
+
+.schedule_td_week {
+	width: 143px;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid #FFF;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.schedule_tr_week {
+	background: #CECECE;
+}
+
+.schedule_table_nav {
+	width: 100%;
+	border-top: 2px solid #283444;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px solid #283444;
+	padding: 5px 0;
+}
+
+.schedule_table_nav a {
+	display: flex;
+}
+
+.schedule_table_nav > tbody > tr > td > table > tbody > tr > td > span {
+	margin-left: 20px;
+	margin-right: 10px;
+}
+
+.schedule_table_nav > tbody > tr > td > table > tbody > tr > td > img:not(.btn) {
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.schedule_table_nav > tbody > tr > td > table > tbody > tr > td >img.btn {
+	margin: 5px;
+}
+
+.schedule_table_nav > tbody > tr > td > table > tbody > tr > td > a >img.btn {
+	margin: 5px;
+}
+
+.schedule_table_nav >tbody >tr >td {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.schedule_table_nav > tbody > tr > td > table > tbody > tr > td {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule_td_data{
+	height: fit-content;
+	border: 1px solid #FFF;
+}
+
+.schedule_td_data >font {
+	display: inline-block;
+	margin-left: 7px;
+	margin-top: 5px;
+}
+
+h2 {
+	font-size: 26px;
+    font-weight: 600;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333333;
+    text-align: left;
+}
+
+/* 오늘버튼 안보이기 */
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display: none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

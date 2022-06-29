@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<mvc:resources mapping="/commons/**" location="/commons/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- @ResponseBody로 String 처리할때 한글처리하기위한 bean -->
+			<bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- Locale 설정을 위한 인터셉터 빈 올리기 -->
+	<!-- <mvc:interceptors>
+		<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="language" />
+	</mvc:interceptors> -->
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*" />
+			<bean class="com.khacademy.khoffice.commons.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/chat_member" />
+			<mvc:mapping path="/chat_member/*" />
+			<bean class="com.khacademy.khoffice.commons.NotAllowedAdminException" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+
+	<context:annotation-config />
+	<context:component-scan
+		base-package="com.khacademy.khoffice.chat_member.*" />
+
+	<!-- Locale 설정을 위한 Resolver 빈 올리기 -->
+	<!-- <bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" /> -->
+		
+	<!-- tiles 설정파일 설정 -->
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/tilesdef/tilesdef.xml</value>
+			</list>
+		</property>
+		<property name="preparerFactoryClass" value="org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory"/>
+	</bean>
+	
+	<!-- tiles 뷰 설정 -->
+	<bean id="tilesviewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+
+	<!-- View Resolver 설정 -->
+	<bean id="viewResolverBeanName"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<bean id="viewResolverInternalResource"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- 서블릿기반 경로매핑시 전체경로를 명시해야하도록 하는 설정 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="interceptors">
+			<list>
+				<!-- <ref bean="localeChangeInterceptor" /> -->
+				<ref bean="loginCheckInterceptor" />
+				<ref bean="notAllowedAdminException" />
+			</list>
+		</property>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+		p:alwaysUseFullPath="true" />
+
+	<!-- 유효성 메시지 파일 설정 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>messages.validation</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 파일업로드 설정 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- ExceptionResolver. bean으로 생성후, 예외가발생할 클래스객체들을 가져와 그와맞는 view페이지로 뿌리기 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.ArithmeticException">
+					error/mathException
+				</prop>
+				<!-- <prop key="java.lang.Exception"> error/exception </prop> -->
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 웹소켓 핸들러 설정 -->
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo/{cwindowNo}/{memberNo}" />
+	</websocket:handlers>
+	
+	<!-- 웹소켓 처리할 핸들러 빈 올리기 -->
+	<bean id="echoHandler" class="com.khacademy.khoffice.commons.EchoHandler" />
+
+</beans>

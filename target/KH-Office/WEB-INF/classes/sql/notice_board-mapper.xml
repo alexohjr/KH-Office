@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeboard">
+
+
+	<!-- 게시판 작성 -->
+	<insert id="insertNoticeBoard"
+		parameterType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		<selectKey keyProperty="nboard_no" resultType="int"
+			order="BEFORE">
+			select notice_board_SEQ.NEXTVAL from dual
+		</selectKey>
+		insert into notice_board (
+		nboard_no,
+		title,
+		content,
+		reg_date,
+		<if test="file_path != null">
+			file_path,
+		</if>
+		is_top
+		) values(
+		#{nboard_no},
+		#{title},
+		#{content},
+		sysdate,
+		<if test="file_path != null">
+			#{file_path},
+		</if>
+		#{is_top})
+	</insert>
+
+	<!-- 게시판 리스트 -->
+	<select parameterType="map" id="selectNoticeBoardList" resultType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		select * from (select
+		nboard_no,title,reg_date,view_count,rownum r 
+		from notice_board 
+		order by NBOARD_NO desc)
+		where r between #{start} and #{end}
+	</select>
+
+	<!-- 게시판 상단고정 -->
+	<select id="selectNoticeBoardIsTop"
+		resultType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		select nboard_no,title,reg_date,view_count from
+		notice_board where is_top = 1
+	</select>
+
+
+	<!-- 게시판 검색 -->
+	<select id="searchlist" parameterType="map"
+		resultType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		select * from (select nboard_no,title,content,reg_date, view_count,
+		rownum r from
+		(select nboard_no,title,content,reg_date, view_count,
+		rownum r from notice_board order by NBOARD_NO desc)
+		<where>
+			<if test="search_type == 'title'">
+				title like '%'||#{keyword}||'%' 
+			</if>
+			<if test="search_type == 'content'">
+				content like '%'||#{keyword}||'%' 
+			</if>
+		</where>
+		order by NBOARD_NO desc) where r between
+		#{start} and #{end}
+	</select>
+
+
+
+	<!-- 게시판 삭제 -->
+	<delete id="deleteNoticeBoard">
+		delete from notice_board where nboard_no =
+		#{nboard_no}
+	</delete>
+
+	<!-- 게시판 상세보기 -->
+	<select id="NoticeBoardDetail"
+		resultType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		select nboard_no,title,content,file_path,view_count,
+		reg_date from notice_board where nboard_no=#{nboard_no}
+	</select>
+
+	<!-- 조회수 업데이트 -->
+	<update id="countupdateNoticeBoardDetail">
+		update notice_board set view_count = view_count + 1 where
+		nboard_no=#{nboard_no}
+	</update>
+
+	<!-- 게시판 수정하기 -->
+	<update id="updateNoticeBoard"
+		parameterType="com.khacademy.khoffice.notice_board.models.NoticeBoardDTO">
+		update notice_board set
+		title = #{title},
+		content = #{content} ,
+		<if test="file_path != null">
+			file_path = #{file_path} ,
+		</if>
+		is_top = #{is_top}
+		where nboard_no = #{nboard_no}
+	</update>
+
+	<!-- 게시판 목록 갯수 -->
+	<select id="articleCount" resultType="int">
+		select count(*) from
+		notice_board
+	</select>
+
+
+	<!-- 게시판 검색 목록 갯수 -->
+	<select id="articleSearchCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from notice_board
+		where
+		<if test="search_type == 'title'">
+			title
+		</if>
+		<if test="search_type == 'content'">
+			content
+		</if>
+		like '%'||#{keyword}||'%'
+	</select>
+
+</mapper>    

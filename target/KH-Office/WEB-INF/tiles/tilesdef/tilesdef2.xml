@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- preparer="menuPreparer" -->
+	<definition name="base_layout" template="/WEB-INF/tiles/template/layout2.jsp">
+	
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="favicon" value="favicon.ico" />
+		
+		<put-attribute name="commonCss" value="common" />
+		<put-attribute name="prefixfreeCss" value="prefixfree" />
+		<put-attribute name="headerCss" value="header" />
+		
+		<put-attribute name="commonJs" value="common" />
+		<put-attribute name="utilsJs" value="utils" />
+		<put-attribute name="jQueryJs" value="jquery-3.3.1.min" />
+		
+	</definition>
+
+	<definition name="/*/*" extends="base_layout">
+		<put-attribute name="title" value="{2}" />
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" />
+		<put-attribute name="css" value="views/{1}/{2}" />
+		<put-attribute name="js" value="views/{1}/{2}" />
+	</definition>
+
+	<definition name="department_selectbox" template="/WEB-INF/tiles/template/department_selectbox.jsp" preparer="departmentPreparer"></definition>
+	
+</tiles-definitions>

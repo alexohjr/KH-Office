@@ -1,0 +1,26 @@
+#wrap {
+	width: 500px;
+    height: 400px;
+    padding-top: 10px;
+}
+
+.schedule_h2{
+	font-weight: bold;
+}
+
+#submitBtn {
+	padding: 5px 70px;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;	
+}
+
+#submitBtn:hover {
+	color: #1A237E;
+	background-color: #FFF;
+}
+
+
+

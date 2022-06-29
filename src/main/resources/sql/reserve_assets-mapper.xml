@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reserveAssets">
+
+
+	<select id="getDay" parameterType="map" resultType="com.khacademy.khoffice.reserve_assets.models.ReserveAsstesDTO">  
+		select * from reserve_assets where (start_time &gt;= to_date(#{day},'yyyy-mm-dd') and start_time &lt; to_date(#{day},'yyyy-mm-dd')+1 ) 
+		and hassets_no=#{hAssets_no}
+	</select>
+	
+	
+	<select id="getDayMember" parameterType="map" resultType="com.khacademy.khoffice.reserve_assets.models.ReserveAsstesDTO">  
+		select rassets_no, r.member_no as member_no, people, purpose, m.name as name, hassets_no,start_time, end_time from reserve_assets r,member m 
+		where (start_time &gt;= to_date(#{day},'yyyy-mm-dd') and start_time &lt; to_date(#{day},'yyyy-mm-dd')+1 )and r.member_no=m.member_no and hassets_no=#{hAssets_no}
+	</select>
+	
+	
+	<select id="getEnd" parameterType="map" resultType="String">
+			select to_char(start_time,'HH24') as start_time from reserve_assets where end_time &gt;= to_date(#{day},'yyyy-mm-dd') 
+			and end_time &lt; to_date(#{day}, 'yyyy-mm-dd')+1  and end_time &gt;  to_date(#{start_time},'yyyy-mm-dd HH24') and hassets_no=#{hAssets_no}
+	</select>
+	
+	
+	<insert id="addReserveAssets" parameterType="com.khacademy.khoffice.reserve_assets.models.ReserveAsstesDTO">
+		insert into reserve_assets(RASSETS_NO,START_TIME,END_TIME,MEMBER_NO,PEOPLE,PURPOSE,HASSETS_NO) 
+		values(RESERVE_ASSETS_SEQ.nextval,#{start_time},#{end_time},#{member_no},#{people},#{purpose},#{hAssets_no})
+	</insert>
+	
+	
+	
+	<select id="reserveMyMemberList" parameterType="map" resultType="com.khacademy.khoffice.reserve_assets.models.ReserveMyMemberDTO">
+	
+		select m_name, h_name,hassets_no, start_time, end_time, people,position,thumb_path,email, purpose, rassets_no,member_no, r from
+		(select m_name, h_name,hassets_no, start_time, end_time, people, purpose,position,thumb_path,email, rassets_no,member_no, rownum r from
+		(select m_name, h_name, ra.hassets_no as hassets_no,position,thumb_path,email, to_char(start_time, 'yyyy-mm-dd HH24') as start_time, to_char(end_time,'HH24') as end_time, people, purpose, rassets_no, ra.member_no as member_no 
+		from reserve_assets ra,(select m.name as m_name, h.name as h_name, h.hassets_no,position,thumb_path,email  from member m , holding_assets h where h.member_no=m.member_no) h  
+		where ra.hassets_no=h.hassets_no order by rassets_no desc) 
+		order by rassets_no desc) where member_no=#{member_no} and (R BETWEEN #{start} AND #{end})
+		
+	</select>
+	
+	
+	<select id="reserveCount" parameterType="string" resultType="int">
+		select count(*) from reserve_assets where  member_no=#{member_no}
+	</select>
+	
+	<delete id="myReserveDelete" parameterType="string">
+		delete from reserve_assets where rassets_no = #{rAssets_no}
+	</delete>
+	
+	<select id="reserveAssetsCount" parameterType="string" resultType="int">
+		
+		select count(*) from reserve_assets where hassets_no=#{hAssets_no}
+	
+	</select>
+	
+	
+	
+	
+</mapper>

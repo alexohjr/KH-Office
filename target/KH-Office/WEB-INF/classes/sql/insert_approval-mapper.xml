@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="insert_approval">
+
+<!-- consult_report테이블에 삽입된 데이터를들고와 consult_approval테이블에 결재받을사람들을 동시삽입-->
+<insert id="consult_write" parameterType="com.khacademy.khoffice.approval.models.ConsultReportAddFormDTO">
+	insert ALL 
+	into consult_approval values(get_conapproval_seq,#{team_leader},'0',#{conreport_no})
+	into consult_approval values(get_conapproval_seq,#{depart_leader},'0',#{conreport_no})
+	into consult_approval values(get_conapproval_seq,#{ceo},'0',#{conreport_no})
+	select 1 from dual
+</insert>
+
+<!-- vacation_report테이블에 삽입된 데이터를들고와 vacation_approval테이블에 결재받을사람들을 동시삽입-->
+<insert id="vacation_write" parameterType="com.khacademy.khoffice.approval.models.VacationReportAddFormDTO">
+	insert ALL 
+	into vacation_approval values(get_vacapproval_seq,#{team_leader},'0',#{vacreport_no})
+	into vacation_approval values(get_vacapproval_seq,#{depart_leader},'0',#{vacreport_no})
+	into vacation_approval values(get_vacapproval_seq,#{ceo},'0',#{vacreport_no})
+	select 1 from dual
+</insert>
+
+
+<!-- cooperation_report테이블에 삽입된 데이터를들고와 cooperation_approval테이블에 결재받을사람들을 동시삽입-->
+<insert id="cooperation_write" parameterType="com.khacademy.khoffice.approval.models.CooperationReportAddFormDTO">
+	insert ALL 
+	into cooperation_approval values(get_cooapproval_seq,#{request_team_leader},'0',#{cooreport_no})
+	into cooperation_approval values(get_cooapproval_seq,#{cooperation_team_leader},'0',#{cooreport_no})
+	select 1 from dual
+</insert>
+
+</mapper>

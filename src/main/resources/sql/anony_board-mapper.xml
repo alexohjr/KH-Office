@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="anonyboard">
+
+
+	<!-- 게시판 작성 -->
+	<insert id="insertAnonyBoard" parameterType="com.khacademy.khoffice.anony_board.models.AnonyBoardDTO"> 
+		<selectKey keyProperty="aboard_no" resultType="int" order="BEFORE">
+         select anony_board_SEQ.NEXTVAL from dual
+     	 </selectKey>
+		insert into anony_board (aboard_no,title,content,reg_date) 
+		values(#{aboard_no},#{title},#{content},sysdate)
+	</insert>
+	
+	<!-- 게시판 리스트 -->
+	<select id="selectAnonyBoardList" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.anony_board.models.AnonyBoardDTO">
+		select * from(select aboard_no,title,reg_date,view_count,rownum r from anony_board order by ABOARD_NO desc)where r between #{start} and #{end}
+	</select>
+		
+	
+	<!-- 게시판 검색 -->
+	<select id="searchlist" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.anony_board.models.AnonyBoardDTO">
+		select * from (select aboard_no,title,content,reg_date, view_count, rownum r from
+		(select aboard_no,title,content,reg_date, view_count, rownum r from anony_board order by ABOARD_NO desc)
+		where
+		<if test="search_type == 'title'">
+		title
+		</if>
+		<if test="search_type == 'content'">
+		content
+		</if>
+		like '%'||#{keyword}||'%'order by ABOARD_NO desc) where r between #{start} and #{end}
+	</select>
+		
+	<!-- 게시판  상세보기 -->
+	<select id="AnonyBoardDetail" resultType="com.khacademy.khoffice.anony_board.models.AnonyBoardDTO">
+		select aboard_no,title,content,view_count,reg_date from anony_board where aboard_no=#{aboard_no}
+		</select>
+	
+	<!-- 조회수 업데이트 -->
+	<update id="countupdateAnonyBoardDetail"> 
+		update anony_board set view_count = view_count + 1 where aboard_no=#{aboard_no}
+	</update>
+
+	<!-- 게시판 목록 갯수 -->
+	<select id="articleCount" resultType="int">
+		select count(*) from anony_board
+	</select>
+	
+
+	<!-- 게시판 검색 목록 갯수 -->
+	<select id="articleSearchCount" parameterType="java.util.HashMap" resultType="int">
+		select count(*) from anony_board
+		where
+		<if test="search_type == 'title'">
+		title
+		</if>
+		<if test="search_type == 'content'">
+		content
+		</if>
+		like '%'||#{keyword}||'%'
+	</select>
+</mapper>  

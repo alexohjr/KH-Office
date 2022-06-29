@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+/*비밀번호변경 텍스트*/
+#titleLabel{
+	font-size: 23px;
+	font-weight: bold;
+	margin: 50px 50px;
+	display: block;
+}
+
+/*비밀번호 입력 div*/
+#passwordDiv{
+	margin: 10px 100px;
+}
+
+.passwordLabel {
+	line-height: 50px;
+	width: 130px;
+	display: inline-block;
+}
+
+/* 비밀번호 입력 인풋*/
+.password{
+	height: 25px;
+}
+
+/*버튼 란*/
+#buttonDiv{
+	text-align: center;
+}
+
+/*변경버튼*/
+#change_btn{
+	background-color: #1A237E;
+    border: 1px solid #1A237E;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 140px;
+    height: 45px;
+    margin: 20px 5px;
+}
+#change_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+/*취소버튼 */
+#cancel_btn{
+	background-color: white;
+	color: black;
+	border: 1px solid #1A237E;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 140px;
+    height: 45px;
+    margin: 20px 5px;
+}
+#cancel_btn:hover{
+	background-color: #1A237E;
+
+    color: white;
+}
+
+#ok{
+	color: blue;
+}
+#no{
+	color: red;
+}

@@ -1,0 +1,199 @@
+/* 선택된 사원, 리더 영역 */
+/* .added_member_area, .added_leader_area {
+	min-height: 100px;
+	border: 1px solid blue;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+} */
+
+/* 리스트에서 선택된 사원 */
+.member_select_area li.member_li.selected {
+	color: #ddd;
+}
+
+
+#projectEditFormJsp {
+	padding: 55px 100px 10px 100px;
+}
+
+#projectEditFormJspHeader {
+	font-size : 3.5em;
+	font-weight : bold;
+}
+
+.projectEditFormStatusSpan {
+	width: 90px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border-radius: 10px;
+    font-size: 25px;
+    float: right;
+    height: 41px; 
+    line-height: 140%;
+  	margin-right: 182px;
+}
+
+.projectEditFormStatusSpan.p {
+	background-color : #38BE5E;
+}
+ 
+.projectEditFormStatusSpan.c {
+	background-color : #2457BD;
+	
+}
+.projectEditFormStatusSpan.w {
+	background-color : #353535;
+	
+}
+.projectEditFormStatusSpan.s {
+	background-color : rgb(181, 64, 23);
+}
+
+#projectEditFormDiv {
+	padding: 15px 0px 70px 0px;
+} 
+
+#projectEditFormUl {
+	margin-top: 35px;
+	position : relative;
+}
+
+.projectAllInputDiv {
+	margin-bottom : 10px;
+}
+
+.projectAllInputSpan {
+	font-weight : bolder;
+	font-size : 1.2em;
+}
+
+#projectLeaderDiv img {
+	width : 25px;
+	height : 25px;
+	border-radius: 100%;
+    background: #eee no-repeat center;
+    background-size: cover;
+    margin: 4px 2px -6px 14px;
+}
+
+.projectName {
+	width:273px;
+	height:40px;
+}
+
+#projectDateInfo {
+	margin-right : 110px;
+}
+
+#projectDateInfo {
+	margin-right : 110px;
+}
+
+.projectOutline {
+	width:273px;
+	height:100px;
+	resize:none;
+}
+
+#projectStatusDiv #status {
+	height: 30px;
+    width: 80px;
+}
+
+#projectMemberSelectArea {
+	position:absolute;
+	left: 400px;
+    top: 0px;
+}
+
+#projectMemberSelect {
+	overflow: scroll;
+    overflow-x: hidden;
+    height: 215px;
+    padding: 0px 15px 0px 0px;
+}
+
+#addProjectMemberBtn {
+	padding: 6px;
+  	color: white; 
+	background-color: #009578;
+ 	border: 1px solid #e4e4e4;  
+  	border-radius: 5px;
+ 	cursor: pointer;
+}
+
+#addProjectMemberBtn:hover {
+	background-color: #00b28f;
+}
+
+#projectMemberSelectArea {
+	position:absolute;
+	left: 400px;
+    top: 0px;
+}
+
+#selectedProjectMemberArea {
+	border-left: 4px solid orange;
+    background-color: #e4e4e47d;
+	overflow: scroll;
+    overflow-x: hidden;
+    height: 245px;
+    padding: 0px 15px 0px 0px;
+}
+
+#selectedProjectMemberDiv {
+	position: absolute;
+	top: 4px;
+	left: 650px;
+}
+
+.added_member_area {
+	margin-top : 10px;
+}
+
+#projectEditFormBtnArea {
+	float:right;
+	margin-right: 182px;
+}
+
+#projectEditFormBtnArea input {
+	width:100px;
+	height:40px;
+   	box-shadow:inset 0px 1px 0px 0px #ffffff;
+   	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+   	background-color:#f9f9f9;
+   	border-radius:4px;
+   	border:1px solid #dcdcdc;
+   	display:inline-block;
+   	cursor:pointer;
+   	color:#666666;
+   	font-family:Arial;
+   	font-size:13px;
+   	font-weight:600; 
+   	padding: 8px 20px;
+   	text-decoration:none;
+   	text-shadow:0px 1px 0px #ffffff;
+}
+
+#projectEditFormBtnArea input:hover {
+   	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+   	background-color:#e9e9e9;
+}
+ 
+#projectEditFormBtnArea input:active {
+	position:relative;
+   	top:1px;
+} 
+
+#selectedProjectMemberDiv .projectAllInputSpan {
+	color : orange;
+	font-weight : 400;
+	font-size: 1.2em;
+}
+
+#editCautionSpan {
+	font-weight: bolder;
+    font-size: 1.5em;
+}  

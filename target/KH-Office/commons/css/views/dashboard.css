@@ -1,0 +1,470 @@
+#wrap {
+	
+}
+
+.dashboard_address {
+	width: 48%;
+	float: left;
+	height: 300px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+
+.chat_window_li {
+	height: 42px !important;
+}
+
+.dashboard_ul {
+	margin: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0px 2px 0px 0px;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 250px;
+}
+
+.dashboard_ul_report {
+	margin: 5px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0px 2px 0px 0px;
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 200px;
+	text-align: center;
+}
+
+.dashboard_notice {
+	width: 48%;
+	float: left;
+	height: 300px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+
+.dashboard_chat {
+	width: 48%;
+	float: left;
+	height: 450px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+
+.dashboard_report {
+	width: 48%;
+	float: left;
+	height: 250px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+	
+.dashboard_count {
+	width: 48%;
+	float: left;
+	height: 182px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+
+.dashboard_project {
+	width: 97.3%;
+	float: left;
+	height: 250px;
+	margin-left: 16px;
+	margin-top: 16px;
+	border: 1px solid #E4E4E4;
+	border-radius: 15px;
+}
+
+.projectCell img {
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+	background: #eee no-repeat center;
+	background-size: cover;
+	margin: 0px 2px -3px 0px;
+}
+
+.projectCell {
+	width: 249px;
+	box-sizing: border-box;
+	/* background-color: #F6F6F6; */
+	background-color: #fff;
+	height: 175px;
+	margin: 31px;
+	display: block;
+	padding: 10px;
+	position: relative;
+	box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+	overflow: hidden;
+	float: left;
+	cursor: pointer;
+}
+
+.projectCell:hover {
+	-webkit-transform: scale(1.08);
+	transform: scale(1.08);
+	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+	/* box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5); */
+	box-shadow: 0px 0px 20px 1px #a9a9a9
+}
+
+.projectCell:active {
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+	-webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+	transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+.projectCellInfo {
+	position: absolute;
+	top: 32px;
+}
+
+.project_no_info {
+	position: absolute;
+	font-size: 1.2em;
+	left: 11px;
+	top: 6px;
+	color: #cfcfcf;
+	/*font-weight : bold;*/
+}
+
+.projectListProjectName {
+	/* padding-left:5px; */
+	font-size: 1.2em;
+	font-weight: bold;
+	margin: 5px 0px;
+}
+
+.project_status_info {
+	position: absolute;
+	right: 8px;
+	top: 6px;
+}
+
+.project_member_count {
+	position: absolute;
+	right: 20px;
+	top: 6px;
+}
+
+.projectCellInfo li {
+	padding: 2px;
+	margin-left: 15px;
+}
+
+.project_status_info {
+	font-weight: bolder;
+	border-radius: 10px;
+	width: 45px;
+	height: 20px;
+	text-align: center;
+	line-height: 140%;
+}
+
+.project_status_info>span {
+	color: white;
+	font-size: 12px;
+}
+
+.project_status_info.p {
+	background-color: #38BE5E;
+}
+
+.project_status_info.c {
+	background-color: #2457BD;
+}
+
+.project_status_info.w {
+	background-color: #353535;
+}
+
+.project_status_info.s {
+	background-color: rgb(181, 64, 23);
+}
+
+.progressBarOuter {
+	color: #fff;
+	font-size: 11px;
+	line-height: 25px;
+	height: 10px;
+	margin-bottom: 5px;
+	width: 215px;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-left: 17px;
+	left: -5px;
+	position: absolute;
+}
+
+.progressBarOuter * {
+	transition: all 1.5s ease;
+}
+
+.progressBarOuter div {
+	position: relative;
+	width: 0;
+	float: left;
+	height: 10px;
+	border-radius: 10px;
+}
+
+.progressBarOuter.p div {
+	background-color: #38BE5E;
+}
+
+.progressBarOuter.c div {
+	background-color: #2457BD;
+}
+
+.progressBarOuter.w div {
+	background-color: #353535;
+}
+
+.progressBarOuter.s div {
+	background-color: rgb(181, 64, 23);
+}
+
+.taskCountSpan {
+	font-weight: bolder;
+}
+
+/*리스트*/
+/* body {
+   line-height: 2.4em;
+} */
+.dashboard_ul ul, .dashboard_ul li {
+	height: 34px;
+	list-style: none;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#ulTable_address, #ulTable_report, #ulTable_notice {
+	line-height: 2.4em;
+	/* margin-top: 10px; */
+}
+
+#ulTable_chat {
+	line-height: 3.0em;
+}
+
+#ulTable_address>li:first-child>ul>li, #ulTable_report>li:first-child>ul>li,
+	#ulTable_notice>li:first-child>ul>li, #ulTable_chat>li:first-child>ul>li
+	{
+	background-color: #e9e9e9e3;
+	font-weight: bold;
+	text-align: center;
+}
+
+#ulTable_address>li>ul, #ulTable_report>li>ul, #ulTable_notice>li>ul,
+	#ulTable_chat>li>ul {
+	clear: both;
+	padding: 0px auto;
+	position: relative;
+	min-width: 40px;
+}
+
+#ulTable_chat>li>ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#ulTable_address>li>ul>li, #ulTable_report>li>ul>li, #ulTable_notice>li>ul>li,
+	#ulTable_chat>li>ul>li {
+	float: left;
+	font-size: 10pt;
+	border-bottom: 1px solid silver;
+	vertical-align: baseline;
+	height: 34px;
+	line-height: 34px;
+	
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;	
+}
+
+#ulTable_chat>li>ul>li {
+	line-height: 44px;
+}
+
+/* address */
+#ulTable_address>li>ul>li:first-child {
+	width: 15%;
+} /*No 열 크기*/
+#ulTable_address>li>ul>li:first-child+li {
+	width: 35%;
+} /*제목 열 크기*/
+#ulTable_address>li>ul>li:first-child+li+li {
+	width: 30%;
+} /*작성일 열 크기*/
+#ulTable_address>li>ul>li:first-child+li+li+li {
+	width: 20%;
+
+	/* report */
+} /*작성자 열 크기*/
+#ulTable_report>li>ul>li:first-child {
+	width: 20%;
+} /*No 열 크기*/
+#ulTable_report>li>ul>li:first-child+li {
+	width: 25%;
+} /*제목 열 크기*/
+#ulTable_report>li>ul>li:first-child+li+li {
+	width: 25%;
+} /*작성일 열 크기*/
+#ulTable_report>li>ul>li:first-child+li+li+li {
+	width: 30%;
+} /*작성자 열 크기*/
+
+/* notice */
+#ulTable_notice>li>ul>li:first-child {
+	width: 60%;
+} /*No 열 크기*/
+#ulTable_notice>li>ul>li:first-child+li {
+	width: 20%;
+} /*제목 열 크기*/
+#ulTable_notice>li>ul>li:first-child+li+li {
+	width: 20%;
+} /*작성일 열 크기*/
+
+/* chat */
+#ulTable_chat>li>ul>li:first-child {
+	/* margin-top: -1px; */
+	width: 10%;
+} /*No 열 크기*/
+#ulTable_chat>li>ul>li:first-child+li {
+	width: 15%;
+} /*제목 열 크기*/
+#ulTable_chat>li>ul>li:first-child+li+li {
+	width: 15%;
+} /*작성일 열 크기*/
+#ulTable_chat>li>ul>li:first-child+li+li+li {
+	width: 15%;
+}
+#ulTable_chat>li>ul>li:first-child+li+li+li+li {
+	width: 25%;
+}
+#ulTable_chat>li>ul>li:first-child+li+li+li+li+li {
+	width: 20%;
+}
+
+.count h1 {
+	font-size: 80px;
+	font-weight: 800;
+	line-height: 1;
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+
+.count h2 {
+	padding-bottom: 25px;
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.count {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.div_title {
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.div_title h3 {
+	font-size: 25px;
+}
+
+.plusBnt {
+	text-align: right;
+	margin-right: 20px;
+	margin-top: -22px
+}
+
+.plusBnt a {
+	text-decoration: none;
+	color: black;
+}
+
+.count a {
+	text-decoration: none;
+	color: black;
+}
+
+.thumb_path {
+	width: 18px;
+	vertical-align: middle;
+}
+
+.thumb_path>img {
+    display: inline-block;
+    height: 29px;
+    width: 29px;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+.thumb_path>span {
+	/* 	width: inherit;
+	display: inline-block;
+	height: 100%;
+	background-color: #1A237E;
+    border-radius: 50%;
+    color: white;
+    line-height: inherit;
+    vertical-align: middle; */
+	background-color: #1A237E;
+	border-radius: 50%;
+	color: white;
+	line-height: inherit;
+	padding: 8px 11px;
+}
+
+.chat_list_area ul li {
+	text-align: center;
+}
+
+.chat_list_area {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0px 2px 0px 0px;
+	margin-top: 10px;
+	height: 400px;
+
+	margin: 5px;
+	margin-left: 10px;
+}
+
+
+/* 클리커블한 부분 포인터로 변경 */
+.dashboard_ul >ul >li:not(:first-child) >ul, .chat_list_area >ul >li:not(:first-child) >ul, .dashboard_ul_report >ul >li:not(:first-child) >ul {
+	cursor: pointer;
+}
+
+.chat_list_area >ul >li:first-child {
+	height: 3
+}
+
+
+
+
+

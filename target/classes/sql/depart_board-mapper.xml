@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dpartboard">
+
+
+   <!-- 게시판 작성 -->
+   <insert id="insertDpartBoard" parameterType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO">
+      <selectKey keyProperty="dboard_no" resultType="int" order="BEFORE">
+         select DEPART_BOARD_SEQ.NEXTVAL from dual
+      </selectKey>
+
+      insert into DEPART_BOARD (
+      dboard_no,
+      title,
+      content,
+      reg_date,
+      <if test="file_path != null">
+         file_path,
+      </if>
+      member_no,
+      DEPARTMENT_NO
+      ) values(
+      #{dboard_no},
+      #{title},
+      #{content},
+      sysdate,
+      <if test="file_path != null">
+         #{file_path},
+      </if>
+      #{member_no},
+      #{department_no}
+      )
+   </insert>
+
+   <select id="selectmember" resultType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO" parameterType="int">
+      select member_no,department_no,name,position from member
+      where member_no=#{member_no}
+   </select>
+
+   <!-- 게시판 리스트 -->
+   <select id="selectDpartBoardList" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO">
+      select * from (select dboard_no, title, content, reg_date, view_count, member_no, name, position, thumb_path, rownum r from
+      (select db.dboard_no, db.title, db.content, db.reg_date, db.view_count, db.member_no, m.name, m.position, m.thumb_path, rownum r 
+      from depart_board db, member m where db.member_no = m.member_no and db.department_no =
+      (select department_no from member where member_no =#{member_no}) order by db.dboard_no desc) order by dboard_no desc)
+      where r between #{start} and #{end}
+   </select>
+
+   <!-- 부서명출력 -->
+   <select id="departmentname" parameterType="int" resultType="string">
+   select name from department where department_no = (select department_no from member where member_no = #{member_no})
+   </select>
+
+   <!-- 게시판 검색 -->
+   <select id="searchlist" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO">
+   
+      select * from (select dboard_no, title, content, reg_date, view_count, member_no, name, position, thumb_path, rownum r from
+      (select db.dboard_no, db.title, db.content, db.reg_date, db.view_count, db.member_no, m.name, m.position, m.thumb_path, rownum r 
+      from depart_board db, member m where db.member_no = m.member_no and db.department_no =
+      (select department_no from member where member_no =#{member_no}) order by db.dboard_no desc)
+      where 
+      <if test="search_type == 'title'">
+         title
+      </if>
+      <if test="search_type == 'content'">
+         content
+      </if>
+      <if test="search_type == 'name'">
+         name
+      </if>
+      like '%'||#{keyword}||'%' order by dboard_no desc) where r between #{start} and #{end}
+   </select>
+
+
+   <!-- 게시판 삭제 -->
+   <delete id="deleteDpartBoard">
+      delete from DEPART_BOARD where dboard_no = #{dboard_no}
+   </delete>
+
+   <!-- 게시판 상세보기 -->
+   <select id="DpartBoardDetail" resultType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO">
+      select
+      db.dboard_no,db.title,db.content,db.file_path,db.view_count,
+      db.reg_date,m.thumb_path, m.name ,m.position,m.member_no from DEPART_BOARD db, member m where
+      db.member_no = m.member_no and db.dboard_no=#{dboard_no}
+   </select>
+
+   <!-- 조회수 업데이트 -->
+   <update id="countupdateDpartBoardDetail">
+      update DEPART_BOARD set view_count = view_count + 1
+      where
+      dboard_no=#{dboard_no}
+   </update>
+
+   <!-- 게시판 수정하기 -->
+   <update id="updateDpartBoard" parameterType="com.khacademy.khoffice.depart_board.models.DepartBoardDTO">
+      update DEPART_BOARD set
+      title = #{title},
+      <if test="file_path != null">
+         file_path = #{file_path},
+      </if>
+      content = #{content}
+      where dboard_no = #{dboard_no}
+   </update>
+
+   <!-- 게시판 목록 갯수 -->
+   <select id="articleCount" resultType="int">
+      select count(*) from
+      DEPART_BOARD
+   </select>
+
+
+   <!-- 게시판 검색 목록 갯수 -->
+   <select id="articleSearchCount" parameterType="java.util.HashMap" resultType="int">
+      select count(*) from (select * from member M, depart_board DB where
+      DB.member_no = M.member_no order by dboard_no)
+      where
+      <if test="search_type == 'title'">
+         title
+      </if>
+      <if test="search_type == 'content'">
+         content
+      </if>
+      <if test="search_type == 'name'">
+         name
+      </if>
+      like '%'||#{keyword}||'%'
+   </select>
+
+</mapper>  

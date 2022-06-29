@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consult_board_detail">
+<select id="selectConsultDetailByNum" parameterType="map" resultType="com.khacademy.khoffice.approval.models.ConsultReportAddFormDTO">
+	select m.name mname,d.name dname,m.position,c.reg_date,c.conreport_no,a.member_no,c.title,c.content 
+	from consult_report c inner join member m
+	on c.member_no=m.member_no inner join department d
+	on d.department_no=m.department_no inner join consult_approval a
+	on c.conreport_no=a.conreport_no 
+	where c.conreport_no=#{conreport_no}
+</select>
+
+<select id="getNameByMemberNo" parameterType="int" resultType="string">
+	select name from member where member_no=#{member_no}
+</select>
+	
+</mapper>

@@ -1,0 +1,351 @@
+#projectListJsp {
+	height : 900px;
+}  
+
+.projectCell img {
+	width : 20px;
+	height : 20px;
+	border-radius: 100%;
+    background: #eee no-repeat center;
+    background-size: cover;
+    margin: 0px 2px -3px 0px;
+} 
+
+.projectCell {
+	width: 254px;
+	box-sizing: border-box; 
+    /* background-color: #F6F6F6; */
+    background-color:#fff;
+    height: 175px;
+    margin: 31px;
+    display: block; 
+    padding: 10px;
+    position: relative; 
+    box-shadow: 0px 0px 7px rgba(0,0,0, 0.19);
+    border-radius: 10px;
+    overflow : hidden;
+    float:left;
+    cursor: pointer;
+}
+
+.projectCell:hover {
+	-webkit-transform: scale(1.08);
+    transform: scale(1.08);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    /* box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5); */
+    box-shadow: 0px 0px 20px 1px #a9a9a9
+}
+
+.projectCell:active {
+	-webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+
+.projectCellInfo {
+	position : absolute;
+	top : 32px; 
+}
+
+.project_no_info {
+	position: absolute;
+	font-size:1.2em;
+    left: 11px; 
+    top: 6px;
+    color:#cfcfcf;
+    /*font-weight : bold;*/
+}
+
+.projectListProjectName {
+	/* padding-left:5px; */
+	font-size:1.2em;
+	font-weight: bold;
+	margin:5px 0px;
+}
+
+.project_status_info {
+	position: absolute;
+    right: 8px;
+    top: 6px; 
+}
+
+.project_member_count {
+	position: absolute;
+    right: 20px;
+    top: 6px;
+}
+
+.projectCellInfo li {
+	padding: 2px;
+	margin-left:15px;
+}
+
+.project_status_info {
+	font-weight : bolder;
+	border-radius: 10px;
+	width: 45px;
+    height: 20px;
+    text-align: center;
+    line-height: 140%;
+}
+.project_status_info > span {
+	color:white;
+	font-size: 12px;
+}
+
+.project_status_info.p {
+	background-color : #38BE5E;
+}
+ 
+.project_status_info.c {
+	background-color : #2457BD;
+	
+}
+.project_status_info.w {
+	background-color : #353535;
+	
+}
+.project_status_info.s {
+	background-color : rgb(181, 64, 23);
+}
+
+/* .projectListProjectName.p {
+	border-left:4px solid #38BE5E;
+}
+.projectListProjectName.c {
+	border-left:4px solid #2457BD;
+}
+.projectListProjectName.w {
+	border-left:4px solid #353535;
+}
+.projectListProjectName.s {
+	border-left:4px solid rgb(181, 64, 23);
+} */
+
+#addProjectBtnDiv{
+	float:right; 
+	width:100%;
+	margin:0 auto;
+	text-align:right;
+	padding-top:20px;
+	padding-right:64px;
+}
+#addProjectBtnP {  
+	/* float: right; */
+    margin: -10px -20px 0px 0px;
+    position: absolute;
+    /* right: 18%; */ 
+    width: 1300px;
+    line-height: 500%;
+}
+
+.projectListDiv{
+	margin-top : 20px;
+}
+
+.projectAppendDiv {
+	display:inline-block; 
+	padding: 50px 0px 20px 7px;
+}
+
+.progressBarOuter {
+	color: #fff;
+	font-size: 11px;
+	line-height: 25px;
+	height: 10px;
+	margin-bottom: 5px;
+	width: 215px;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	margin-top: 5px;
+	margin-left:17px;
+    left: -5px;
+    position: absolute;
+}
+
+.progressBarOuter * {
+	transition: all 1.5s ease;
+}
+
+.progressBarOuter div {
+	position: relative;
+	width: 0;
+	float: left;
+	height: 10px;
+	border-radius: 10px;
+}
+
+.progressBarOuter.p div {
+	background-color : #38BE5E;
+}
+ 
+.progressBarOuter.c div {
+	background-color : #2457BD;
+	
+}
+.progressBarOuter.w div {
+	background-color : #353535;
+	
+}
+.progressBarOuter.s div {
+	background-color : rgb(181, 64, 23);
+}
+
+.getProjectListBtn {
+	height:40px; 
+	width:40px; 
+	display:block; 
+	position:relative;
+	margin-left: 620px;
+	border-radius: 10px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+/* .getProjectListBtn:hover {
+	-webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+}   */
+
+.getProjectListBtn {
+	background:#5e5e5e;
+}
+
+.getProjectListBtn:hover {
+	background:#fff;
+}
+ 
+
+.getProjectListBtn:before, .getProjectListBtn:after {
+	content:''; 
+	height:6px; 
+	width:28px; 
+	display:block; 
+	background:#fff; 
+	-webkit-border-radius:10px;
+	position:absolute; 
+	top:17px; 
+	left:6px;
+}
+
+.getProjectListBtn:hover:before, .getProjectListBtn:hover:after {
+	content:''; 
+	height:6px; 
+	width:28px; 
+	display:block; 
+	background:#5e5e5e; 
+	-webkit-border-radius:10px;
+	position:absolute; 
+	top:17px; 
+	left:6px;
+}
+
+.getProjectListBtn:after {
+	height:28px; 
+	width:6px; 
+	top:6px; 
+	left:17px;
+}
+ 
+.getProjectListBtn:hover:after {
+	height:28px; 
+	width:6px; 
+	top:6px; 
+	left:17px;
+}    
+ 
+.getProjectListBtn:active:after, .getProjectListBtn:active:before {
+	-webkit-transform: scale(0.9);
+    transform: scale(0.9);
+} 
+
+#getProjectListBtnDiv {
+	margin-bottom : 100px;
+	text-align : center;
+}
+
+#getProjectListTextSpan {
+	color : rgb(255, 149 , 0);
+	font-weight: bolder;
+}
+
+
+#addProjectBtn {
+  background-color: #009578;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  font-size: 18px;
+  line-height: 1em;
+  margin: 15px 40px;
+  outline: none;
+  padding: 8px 8px 5px;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin-right: 65px;
+  float: right;
+}
+#addProjectBtn:before,
+#addProjectBtn:after {
+  border-color: transparent;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  border-style: solid;
+  border-width: 0;
+  content: "";
+  height: 24px;
+  position: absolute;
+  width: 24px;
+}
+#addProjectBtn:before {
+  border-color: #009578;
+  border-right-width: 2.5px;
+  border-top-width: 2.5px;
+  right: -5px;
+  top: -5px;
+}
+#addProjectBtn:after {
+  border-bottom-width: 2.5px;
+  border-color: #009578;
+  border-left-width: 2.5px;
+  bottom: -5px;
+  left: -5px;
+}
+#addProjectBtn:hover { 
+  background-color: #00b28f;
+}
+#addProjectBtn:hover:before, #addProjectBtn:hover:after {
+  height: 100%;
+  width: 100%;
+  border-color: #00b28f;
+}
+ 
+#addProjectBtn:active {
+	-webkit-transform: scale(0.97);
+    transform: scale(0.97);
+    -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+    transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+}
+
+#projectCount {
+	margin: 0px 830px 0px 14px;
+    font-weight: bolder;
+    font-size: 1.1em;
+    color: rgb(255, 149 , 0);
+    margin: 0px 0px 0px 50px;
+}
+
+.taskCountSpan {
+	font-weight : bolder;
+}
+ 
+

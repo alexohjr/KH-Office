@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="insert_report">
+
+<insert id="consult_write" parameterType="com.khacademy.khoffice.approval.models.ConsultReportAddFormDTO">
+	
+	<selectKey keyProperty="conreport_no" resultType="int" order="BEFORE">  
+        select CONSULT_REPORT_SEQ.NEXTVAL FROM dual
+     </selectKey>
+     
+	insert into consult_report 
+	values(#{conreport_no}, SYSDATE, #{member_no}, #{title}, #{content})
+</insert>
+
+<insert id="vacation_write" parameterType="com.khacademy.khoffice.approval.models.VacationReportAddFormDTO">
+	
+	<selectKey keyProperty="vacreport_no" resultType="int" order="BEFORE">  
+        select VACATION_REPORT_SEQ.NEXTVAL FROM dual
+     </selectKey>
+     
+	insert into vacation_report
+	values(#{vacreport_no}, SYSDATE, #{member_no}, #{type}, #{reason}, #{start_date},#{end_date},#{substitute})
+</insert>
+
+<insert id="cooperation_write" parameterType="com.khacademy.khoffice.approval.models.CooperationReportAddFormDTO">
+	
+	<selectKey keyProperty="cooreport_no" resultType="int" order="BEFORE">  
+        select COOPERATION_REPORT_SEQ.NEXTVAL FROM dual
+     </selectKey>
+     
+	insert into cooperation_report
+	values(#{cooreport_no}, #{member_no}, #{department_no}, SYSDATE, #{title}, #{deadline}, #{content})
+</insert>
+
+</mapper>

@@ -1,0 +1,80 @@
+#wrap {
+	padding-top: 150px;
+}
+
+h2 {
+	font-size: 26px;
+	font-weight: 600;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #333333;
+	text-align: left;
+}
+
+/* 선택된 사원 영역 */
+.added_member_area {
+	min-height: 100px;
+	border: 1px solid #DDD;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.added_member_area >span {
+}
+
+/* 리스트에서 선택된 사원 */
+.member_select_area li.member_li.selected {
+	color: #ddd;
+}
+
+#create_chat_form {
+	padding: 50px 70px;
+}
+
+#create_chat_form .chat_window_name {
+}
+
+#create_chat_form .chat_window_name > label {
+	display: block;
+	margin-bottom: 10px;
+	font-weight: 800;
+}
+
+#create_chat_form .chat_window_name > input {
+	height: 30px;
+	padding-left: 8px;
+	width: 500px;
+}
+
+#create_chat_form .chat_member_select {
+	margin: 50px auto;
+}
+
+#create_chat_form .chat_member_select >p {
+	font-weight: 800;
+	margin-bottom: 10px;
+}
+
+.added_member_area_message {
+	margin-top: 8px;
+}
+
+.btn_area {
+	text-align: right;
+}
+
+.btn_area >button {
+	padding: 10px 30px;	
+    text-decoration: none;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.btn_area >button:hover {
+	color: #1A237E;
+	background-color: white;
+	border: 1px solid #1A237E;
+}

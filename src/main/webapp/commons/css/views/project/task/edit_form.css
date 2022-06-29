@@ -1,0 +1,187 @@
+/* 리스트에서 선택된 사원 */
+#projectMemberSelectArea li.member_li.selected {
+	color: #ddd;
+}
+
+.member_li img {
+	width : 25px;
+	height : 25px;
+	border-radius: 100%;
+    background: #eee no-repeat center;
+    background-size: cover;
+}
+
+
+
+#taskEditFormJsp {
+	padding: 55px 100px 10px 100px;
+}
+
+#taskEditFormJspHeader {
+	font-size : 3.5em;  
+	font-weight : bold;
+}
+
+#taskEditFormUl {
+	margin-top: 35px;
+	position : relative;
+}
+
+#taskEditFormDiv {
+	padding: 15px 0px 70px 0px;
+}
+
+.taskName {
+	width: 200px;
+    height: 30px;
+}
+
+.taskContent {
+	height: 120px;
+    width: 200px;
+    resize: none;
+}
+
+.taskDeadline {
+	width: 200px;
+}
+
+#taskNameDiv, #taskDeadlineDiv, #taskContentDiv, #taskFileDiv {
+	margin-bottom : 10px;
+}
+
+#selectTaskMember {
+	position: absolute;
+    left: 243px;
+    top: 0px;
+}
+
+/* #selectedTaskMember {
+	border-left: 4px solid orange;
+    background-color: #e4e4e47d;
+} */
+
+#selectedTaskMemberDiv {
+	position: absolute;
+	top: 0px;
+	left: 450px; 
+}
+ 
+#selectedTaskMemberSpan {
+	color : orange;
+	font-weight : 400;
+	font-size: 1.2em;
+}
+
+#showSelectBoxBtn {
+	padding: 6px;
+  	color: white;
+	background-color: #009578;
+ 	border: 1px solid #e4e4e4;
+  	border-radius: 5px;
+ 	cursor: pointer;
+}
+
+#showSelectBoxBtn:hover {
+	background-color: #00b28f;
+}
+
+.taskAllInputSpan {
+	font-weight : bolder;
+	font-size : 1.2em;
+}
+
+#taskFileDiv2 {
+	padding: 10px 0px 10px 0px;
+}
+ 
+
+/* 파일 업로드 */
+#taskFileUploadBtn {
+  	padding: 6px;
+  	color: white;
+  	background-color: #009578;
+  	border: 1px solid #e4e4e4;
+  	border-radius: 5px;
+  	cursor: pointer;
+}
+
+#taskFileUploadBtn:hover {
+  background-color: #00b28f;
+}
+
+#taskFileUploadText {
+  margin-left: 10px;
+  color: #040404e3;
+  font-weight : bolder;
+}
+/* 파일 업로드 */
+
+
+#taskEditFormBtnArea {
+	float:right;
+	margin-right: 100px;
+}
+
+
+#taskEditBtn, #editCancelBtn {
+	width:100px;
+	height:40px;
+   	box-shadow:inset 0px 1px 0px 0px #ffffff;
+   	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+   	background-color:#f9f9f9;
+   	border-radius:4px;
+   	border:1px solid #dcdcdc;
+   	display:inline-block;
+   	cursor:pointer;
+   	color:#666666;
+   	font-family:Arial;
+   	font-size:13px;
+   	font-weight:600; 
+   	padding: 8px 20px;
+   	text-decoration:none;
+   	text-shadow:0px 1px 0px #ffffff;
+}
+
+#taskEditBtn:hover, #editCancelBtn:hover {
+   	background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+   	background-color:#e9e9e9;
+}
+ 
+#taskEditBtn:hover, #editCancelBtn:hover {
+	position:relative;
+   top:1px;
+}  
+
+#taskEditFormUl #status {
+	height :28px;
+}
+
+#projectMemberSelectArea {
+	overflow: scroll;
+    overflow-x: hidden;
+    height: 245px;
+}
+
+#selectedProjectMemberArea {
+	overflow: scroll;
+    overflow-x: hidden;
+    height: 245px;
+    padding: 10px 15px 0px 0px;
+    border-left: 4px solid orange;
+    background-color: #e4e4e47d;
+}
+
+#editCautionSpan {
+	font-weight: bolder;
+    font-size: 1.5em;
+} 
+
+
+
+
+
+
+
+
+

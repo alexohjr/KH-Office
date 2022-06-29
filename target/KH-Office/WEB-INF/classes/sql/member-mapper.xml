@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<select id="selectMemberByDepartmentNo" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		SELECT member_no, name, department_no, position, email, phone, tel, zipcode, main_address, hire_date, hire_type, emp_type, birthday, gender, marriage, disabled, password, thumb_path AS thumb_path FROM member 
+		<where>
+			department_no = #{departmentNo}
+		</where>
+	</select>
+
+	<!-- 사번으로 직급과 이름 조회 -->
+	<select id="selectPositionNameByMemberNo" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		SELECT member_no, position, name FROM member WHERE member_no = #{memberNo}
+	</select>
+	
+	<!-- member_no값과 name을 전부가져와 form:select를 하기위한 쿼리문 -->
+	<select id="getAllMemberList" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select member_no,name from member
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 업무대리인의 member_no를 들고 name을 가져오는 쿼리문 -->
+	<select id="getNameByNo" resultType="string" parameterType="string">
+		select name from member where member_no=#{substitute}
+	</select>
+	
+	<update id="decreaseRemainderLeave" parameterType="com.khacademy.khoffice.approval.models.VacationApprovalUpdateStatusDTO">
+		<selectKey keyProperty="report_member_no" resultType="int" order="BEFORE">
+			select member_no from vacation_report where vacreport_no=#{vacreport_no}
+		</selectKey>
+		update member set remainder_leave=remainder_leave-#{use_day} where member_no=#{report_member_no}
+	</update>
+	
+	<select id="getRemainderLeaveCount" parameterType="int" resultType="int">
+		select remainder_leave from member where member_no=#{member_no}
+	</select>
+	
+	<!-- 전체 행 수 조회 -->
+	<select id="selectTotalCount"  resultType="int">
+		SELECT COUNT(1) FROM member 
+	</select>
+	
+	<select id="getHistoryMemberListByDepartmentNo" parameterType="int" resultType="com.khacademy.khoffice.work_history.models.AdminWorkHistoryDTO">
+		select d.name dname,m.position,m.name mname,m.thumb_path,m.member_no,d.department_no
+		from member m inner join department d
+		on d.department_no=m.department_no where d.department_no=#{department_no}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!-- 사원 테이블에서 이메일과 패스워드 일치하는 행 조회 / 로그인-->
+	<select id="selectByEmailPassword" parameterType="com.khacademy.khoffice.member.models.MemberDTO" resultType="int">
+		<!-- SELECT COUNT(*) FROM member WHERE email = #{email} AND password = #{password} -->
+		SELECT member_no FROM member WHERE  email = #{email} AND password = #{password}
+	</select>
+
+	<!-- 리스트 조회 -->
+	<select id="selectMemberList" resultType="com.khacademy.khoffice.member.models.MemberDepartmentDTO" parameterType="com.khacademy.khoffice.member.models.ListDTO">
+		select * FROM(
+		SELECT M.member_no, M.thumb_path, M.name as mname, D.name as dname, M.department_no, M.position, M.email, M.tel, rownum r
+		FROM member M
+		INNER JOIN department D
+		ON M.department_no = D.department_no
+		<where> 
+			<if test="keyword != null">
+				M.name like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		) t
+		<if test="is_bookmark == 1">
+		INNER JOIN
+		(SELECT * FROM member_bookmark where member_no = #{member_no}) b
+		ON t.member_no = b.bmember_no 
+		</if>
+		WHERE r between #{start} and #{end}
+	</select>
+
+	<!-- 즐겨찾기 조회용 -->
+	<select id="selectBookmarkList" resultType="com.khacademy.khoffice.member.models.BookmarkDTO" parameterType="int">
+		SELECT * FROM member_bookmark WHERE member_no = #{member_no}
+	</select>
+	
+	<!-- 전체 행 수 조회 -->
+	<select id="selectMemberCount" parameterType="com.khacademy.khoffice.member.models.ListDTO" resultType="int">
+		SELECT COUNT(*) FROM member m
+		<where>
+			<if test='keyword != ""'>
+			 	name like '%'||#{keyword}||'%'
+			</if>
+		</where>
+		<if test="is_bookmark == 1">
+			inner join 
+			(select * from member_bookmark 
+			where member_no = #{member_no}) b
+			on b.bmember_no = m.member_no
+		</if>
+	</select>
+
+
+	<!-- 즐겨찾기 추가 -->
+	<update id="insertBookmark" parameterType="com.khacademy.khoffice.member.models.BookmarkDTO">
+		INSERT INTO member_bookmark VALUES
+		(#{member_no},#{bmember_no})
+	</update>
+	
+	<!-- 즐겨찾기 삭제 -->
+	<delete id="deleteBookmark" parameterType="com.khacademy.khoffice.member.models.BookmarkDTO">
+		DELETE FROM member_bookmark
+        WHERE member_no = #{member_no} AND bmember_no = #{bmember_no}
+	</delete>
+
+	<!-- 이메일 중복확인용 -->
+	<select id="selectMemberEmail" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member WHERE email = #{email}
+	</select>
+	
+	<!-- 사원등록 -->
+	<insert id="insertMember" parameterType="com.khacademy.khoffice.member.models.MemberDTO">
+		INSERT INTO member VALUES
+		(member_seq.nextval,#{name},#{department_no},#{position},#{email},#{phone},#{tel},
+		#{zipcode},#{main_address},#{detail_address},#{hire_date,jdbcType=DATE},#{hire_type},#{emp_type},
+		#{birthday,jdbcType=DATE},#{gender},#{marriage},#{disabled},'1234',#{thumb_path},#{total_leave},#{remainder_leave})
+			<selectKey resultType="int" keyProperty="member_no" order="AFTER">
+	        	SELECT member_no FROM member where email = #{email}
+	   	 	</selectKey> 
+	</insert>
+	
+	<!-- 사원 상세페이지 + 해당사원의 부서명 -->
+	<select id="selectMemberByMemberNo" resultType="com.khacademy.khoffice.member.models.MemberDetailDTO" parameterType="int">
+		SELECT distinct d.name as department_name, m.member_no,m.name,m.department_no,m.position,m.email,m.phone,m.tel,
+		m.zipcode,m.main_address,m.detail_address,m.hire_date,m.hire_type,m.emp_type,
+		m.birthday,m.gender,m.marriage,m.disabled,m.thumb_path,m.total_leave,m.remainder_leave 
+        from department d 
+		INNER JOIN 
+			(SELECT member_no,name,department_no,position,email,phone,tel,
+			zipcode,main_address,detail_address,hire_date,hire_type,emp_type,
+			birthday,gender,marriage,disabled,thumb_path,total_leave,remainder_leave
+			FROM member 
+			WHERE member_no = #{memberNo})m
+        ON d.department_no = m.department_no
+	</select>
+
+	<!-- 비밀번호 변경 -->
+	<update id="updateMemberPassword" parameterType="com.khacademy.khoffice.member.models.PasswordDTO">
+		UPDATE member
+		SET password = #{newPassword}
+		<where>
+			<if test="#{newPassword} == #{newPassword2}">
+			 member_no = #{memberNo} and password = #{beforePassword} 
+			 </if>
+		</where>
+	</update>
+	
+	<!-- 사원 수정을 위한 thumb_path 조회 -->
+	<select id="selectMemberThumb" parameterType="int" resultType="string">
+		SELECT thumb_path FROM member WHERE member_no = #{member_no} 
+	</select>
+	
+	<!-- 사원 수정 -->
+	<update id="updateMemberInfo" parameterType="com.khacademy.khoffice.member.models.MemberDTO">
+		UPDATE member
+		SET name = #{name}, 
+			department_no = #{department_no},
+			position = #{position},
+			phone = #{phone},
+			tel = #{tel},
+			zipcode = #{zipcode},
+			main_address = #{main_address},
+			detail_address = #{detail_address},
+			emp_type = #{emp_type},
+			marriage = #{marriage},
+			disabled = #{disabled},
+			thumb_path = #{thumb_path},
+			total_leave = #{total_leave},
+			remainder_leave = #{remainder_leave}
+		WHERE member_no = #{member_no}
+	</update>
+	
+	<!-- 사원 삭제 -->
+	<delete id="deleteMember" parameterType="int">
+		DELETE FROM member
+		WHERE member_no = #{member_no}
+	</delete>
+	
+</mapper>

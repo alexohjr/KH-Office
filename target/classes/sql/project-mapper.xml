@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project">
+	<!-- 새로운 프로젝트 생성 -->
+	<insert id="addNewProject" parameterType="com.khacademy.khoffice.project.models.ProjectDTO">
+		<selectKey keyProperty="project_no" resultType="int" order="BEFORE">
+    		select project_seq.NEXTVal FROM DUAL
+  		</selectKey>
+		
+		insert into project values
+		(#{project_no}, #{name}, #{outline}, #{start_date}, #{end_date}, 0)
+	</insert>
+	
+	<insert id="addProjectMember" parameterType="com.khacademy.khoffice.project.models.ProjectMemberDTO">
+		insert into project_member(
+			pmember_no,
+			project_no,
+			is_leader,
+			member_no
+		) values 
+		(
+			project_member_seq.nextVal,
+			#{project_no},
+			0,
+			#{member_no}
+		)
+	</insert>
+	
+	<insert id="addProjectLeader" parameterType="com.khacademy.khoffice.project.models.ProjectMemberDTO">
+		insert into project_member(
+			pmember_no,
+			project_no,
+			is_leader,
+			member_no
+		) values
+		(
+			project_member_seq.nextVal,
+			#{project_no},
+			1,
+			#{member_no}
+		) 
+	</insert>
+	
+	<!-- 리더 정보 조회 -->
+	<select id="selectOne" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		SELECT * FROM member where member_no = #{member_no}
+	</select>
+	
+	<!-- 내가 속한 프로젝트 개수 조회 -->
+	<select id="getProjectCount" parameterType="int" resultType="int">
+		select count(project_no) from project_member where member_no = #{member_no}
+	</select>
+	 
+	<!-- 프로젝트 리스트 조회 -->
+	<select id="getProjectList" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.project.models.ProjectListDTO">
+		<!-- select * from
+		(select project_no, name, outline, start_date, end_date, status, rownum r from
+		(select project_no, name, outline, start_date, end_date, status, rownum r 
+		from project where project_no in 
+		(select project_no from project_member where member_no = #{member_no}) 
+		order by project_no desc) 
+		order by project_no desc) 
+		where r between #{startRow} and #{endRow} -->
+		
+		select * from
+		(select project_no, name, outline, start_date, end_date, status, rownum r from
+		(select project_no, name, outline, start_date, end_date, status, rownum r 
+		from project where project_no in 
+		(select project_no from project_member where member_no = #{member_no}) 
+		order by status asc, project_no desc) 
+		order by status asc, project_no desc) 
+		where r between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 프로젝트 리스트 팀원 수 조회  --> 
+	<select id="getMemberCount" parameterType="int" resultType="int">
+		select count(DISTINCT member_no) from project_member where project_no = #{project_no}
+	</select>
+	
+	<!-- 프로젝트 리스트 task 수 조회 -->
+	<select id="getTaskCount" parameterType="int" resultType="int">
+		select count(task_no) from task where project_no = #{project_no}
+	</select>
+	
+	<!-- 프로젝트 리스트 리더 정보 조회 -->
+	<select id="getLeaderInfoList" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select name, position, thumb_path from member where member_no = (select member_no from project_member where project_no = #{project_no} and is_leader = 1)
+	</select>
+	
+	<!-- 프로젝트 상세 보기 -->
+	<select id="getDetail" parameterType="int" resultType="com.khacademy.khoffice.project.models.ProjectDetailDTO">
+		select project_no, name as pName, outline, start_date, end_date, status from project where project_no = #{project_no}
+	</select>
+	
+	<!-- 프로젝트 상세 보기 리더 정보 출력 -->
+	<select id="getLeaderInfoDetail" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select member_no, name, position, thumb_path from member where member_no = (select member_no from project_member where project_no = #{project_no} and is_leader = 1)
+	</select>
+	
+	<!-- 프로젝트 팀원넘버 출력 -->
+	<select id="getProjectMember" parameterType="int" resultType="com.khacademy.khoffice.project.models.ProjectMemberDTO">
+		select distinct member_no from project_member where project_no = #{project_no} and is_leader = 0
+	</select>
+	
+	<!-- 프로젝트 팀원 정보 조회 -->
+	<select id="getProjectMemberInfo" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select member_no, name, position, thumb_path from member where member_no = #{member_no}	
+	</select>
+	
+	<!-- 프로젝트 수정하기 -->
+	<update id="updateProject" parameterType="com.khacademy.khoffice.project.models.ProjectDTO">
+		UPDATE project set name = #{name}, outline = #{outline}, start_date = #{start_date}, end_date = #{end_date}, status = #{status} where project_no = #{project_no}
+	</update>
+	
+	<!-- 프로젝트 수정하기 (팀원 추가) -->
+	<insert id="addNewProjectMember" parameterType="java.util.HashMap">
+		insert into project_member(
+			pmember_no,
+			project_no,
+			is_leader,
+			member_no
+		) values
+		(
+			project_member_seq.nextVal,
+			#{project_no},
+			0,
+			#{member_no}
+		)
+	</insert>
+	
+	<!-- 프로젝트 수정하기 (팀원 삭제) -->
+	<delete id="deleteProjectMember" parameterType="java.util.HashMap">
+		delete from project_member where project_no = #{project_no} and member_no = #{member_no}
+	</delete>
+	
+	<!-- 프로젝트 수정하기 (팀원 태스크 존재 여부) -->
+	<select id="memberOnTask" parameterType="java.util.HashMap" resultType="int">
+		select count(task_no) from task_member where pmember_no in (select pmember_no from project_member where project_no = #{project_no} and member_no = #{member_no})
+	</select>	
+	
+	<!-- 프로젝트 삭제하기 -->
+	<delete id="deleteProject" parameterType="int">
+		delete from project where project_no = #{project_no}
+	</delete>
+	
+	<!-- 프로젝트 상태 확인 -->
+	<select id="checkProjectStatus" parameterType="int" resultType="int">
+		select status from project where project_no = #{project_no}
+	</select>
+	 
+	<!-- 프로젝트 상태 변경 (태스크 에이잭스) -->
+	<update id="updateProjectStatus" parameterType="java.util.HashMap">
+		update project set status = #{status} where project_no = #{project_no}
+	</update>
+	
+</mapper>

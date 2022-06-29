@@ -1,0 +1,17 @@
+#back_btn{
+		background-color: #1A237E;
+    border: 1px solid #1A237E;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+}
+
+#back_btn:hover {
+	background-color: white;
+	color: black;
+}

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="task">
+	
+	<!-- 문서관리 페이징 처리하여 가져오기 -->
+	<select id="selectProjectTaskByStartEnd" parameterType="map" resultType="com.khacademy.khoffice.task.models.ProjectTaskFileDTO">
+		SELECT * FROM 
+		(SELECT P.project_no AS project_no, P.name AS project_name, P.status AS project_status, T.task_no AS task_no, T.name AS task_name, T.deadline, T.file_path AS file_path, T.status AS task_status, ROWNUM R 
+		FROM project P
+		INNER JOIN task T 
+		ON P.project_no = T.project_no
+		WHERE T.file_path IS NOT NULL)
+		WHERE 
+			<if test="pager.start != null and pager.end != null">
+				R BETWEEN #{pager.start} AND #{pager.end}	
+			</if>
+			<if test='pager.type != null and pager.type.equals("project_name")'>
+				AND project_name LIKE '%'||#{pager.keyword}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("task_name")'>
+				AND task_name LIKE '%'||#{pager.keyword}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("project_status")'>
+				AND project_status = '%'||#{pager.project_status}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("task_status")'>
+				AND task_status ='%'||#{pager.task_status}||'%' 
+			</if>
+	</select>
+	
+	<!-- 문서관리 페이징 위한 카운트 가져오기 -->
+	<select id="selectCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) FROM 
+		task T 
+		INNER JOIN project P 
+		ON T.project_no = P.project_no 
+		WHERE 
+			T.file_path IS NOT NULL
+			<if test='pager.type != null and pager.type.equals("project_name")'>
+				AND P.name LIKE '%'||#{pager.keyword}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("task_name")'>
+				AND T.name LIKE '%'||#{pager.keyword}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("project_status")'>
+				AND P.status = '%'||#{pager.project_status}||'%' 
+			</if>
+			<if test='pager.type != null and pager.type.equals("task_status")'>
+				AND T.status ='%'||#{pager.task_status}||'%' 
+			</if>
+
+	</select>
+	
+	<!-- 태스크 생성시 팀원목록 뿌려주기 -->
+	<select id="getProjectMember" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select * from member where member_no in(select member_no from project_member where project_no = #{project_no})
+	</select>
+	
+	<!-- 태스크 생성 -->
+	<insert id="addTask" parameterType="com.khacademy.khoffice.task.models.TaskDTO">
+		<selectKey keyProperty="task_no" resultType="int" order="BEFORE">
+			select task_seq.nextVal from dual
+		</selectKey>
+		
+		insert into task(
+			task_no,
+			name,
+			content,
+			deadline,
+			<if test="file_path != null">
+			file_path,
+			</if>
+			status,
+			project_no
+		) values (
+			#{task_no},
+			#{name},
+			#{content},
+			#{deadline},
+			<if test="file_path != null">
+			#{file_path},
+			</if>
+			0,
+			#{project_no}
+		)
+	</insert>
+	
+	<!-- 태스크 멤버 추가 -->
+	<insert id="addTaskMember" parameterType="java.util.HashMap">
+		insert into task_member values(#{task_no}, (select pmember_no from project_member where member_no=#{member_no} and project_no=#{project_no}))
+	</insert>
+	
+	<!-- 태스크 목록 가져오기 -->
+	<select id="getTaskList" parameterType="int" resultType="com.khacademy.khoffice.task.models.TaskDTO">
+		select * from task where project_no = #{project_no} order by task_no desc
+	</select>
+	
+	<!-- 태스크 목록 담당자 정보 가져오기 -->
+	<select id="getMemberListByTaskNo" parameterType="int" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+		select distinct m.member_no, m.name, m.position, m.thumb_path 
+		from member m, project_member pm 
+		where m.member_no = pm.member_no and m.member_no 
+		in (select member_no from project_member where pmember_no 
+		in (select pmember_no from task_member where task_no = #{task_no}))
+	</select>
+	
+	<!-- 태스크 상세 정보 가져오기 -->
+	<select id="getTaskDetail" parameterType="int" resultType="com.khacademy.khoffice.task.models.TaskDTO">
+		select * from task where task_no = #{task_no}
+	</select>
+	
+	<!-- 태스크 멤버 수정(삭제) -->
+	<delete id="deleteTaskMember" parameterType="int">
+		delete from task_member where task_no = #{task_no}
+	</delete>
+	
+	<!-- 태스크 수정 -->
+	<update id="updateTask" parameterType="com.khacademy.khoffice.task.models.TaskEditDTO">
+		update task 
+		<set>
+			<if test="name != null">name = #{name},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="deadline != null">deadline = #{deadline},</if>
+			<if test="file_path != null">file_path = #{file_path},</if>
+			<if test="status != null">status = #{status}</if>
+		</set>
+		where task_no = #{task_no}
+		 
+		<!-- content = #{content}, 
+		deadline = #{deadline}, 
+		<if test="file_path != null" >
+		file_path = #{file_path}, 
+		</if>
+		status = #{status}  -->
+	</update>
+	
+	<!-- 태스크 삭제 -->
+	<delete id="deleteTask"	parameterType="int">
+		delete from task where task_no = #{task_no}
+	</delete>
+	
+	<!-- 태스크 상태 변경 -->
+	<update id="updateTaskStatus" parameterType="java.util.HashMap">
+		update task set status = #{status} where task_no = #{task_no}
+	</update>
+	
+	<!-- 모든 태스크의 상태값 확인 -->
+	<select id="checkTaskStatus" parameterType="int" resultType="int">
+		select count(*) from (select status from task where project_no = #{project_no}) where status = '0' or status = '1'
+	</select>
+	
+</mapper>

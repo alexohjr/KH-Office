@@ -1,0 +1,36 @@
+#notAllowedAdminJsp{
+	margin:0px auto;
+}
+
+#warningDiv {
+	text-align:center;
+	margin:0px auto;
+}
+
+#warningTextDiv {
+	margin-bottom:37px;
+	font-size:21px;
+	font-weight:bold;
+	text-align:center;
+}
+
+#warningPageBtnDiv {
+	text-align: center;
+}
+
+#errorIcon{
+    width: 400px;
+
+}
+
+#backIcon{
+    width: 80px;
+    margin: auto 10px;
+	cursor: pointer;
+}
+
+#homeIcon{
+    width: 80px;
+    margin: auto 10px;
+    cursor: pointer;
+} 

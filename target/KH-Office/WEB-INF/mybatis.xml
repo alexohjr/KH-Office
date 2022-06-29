@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 프로퍼티 파일로부터 데이터를 읽어온다. -->
+	<context:property-placeholder location="classpath:db.properties" />
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="${jdbc.driver}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:sql/*.xml</value>
+			</list> 
+		</property>
+		<!-- <property name="typeAliasesPackage" value="spring.model" /> -->
+	</bean>
+
+	<bean id="memberDAO" class="com.khacademy.khoffice.member.daos.MemberDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="departmentDAO" class="com.khacademy.khoffice.department.daos.DepartmentDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="chatWindowDAO" class="com.khacademy.khoffice.chat_window.daos.ChatWindowDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="chatMemberDAO" class="com.khacademy.khoffice.chat_member.daos.ChatMemberDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="chatMessageDAO" class="com.khacademy.khoffice.chat_message.daos.ChatMessageDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="taskDAO" class="com.khacademy.khoffice.task.daos.TaskDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="conBoardDAO" class="com.khacademy.khoffice.approval.daos.ConsultReportBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="cooBoardDAO" class="com.khacademy.khoffice.approval.daos.CooperationReportBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="vacBoardDAO" class="com.khacademy.khoffice.approval.daos.VacationReportBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="conApprovalBoardDAO" class="com.khacademy.khoffice.approval.daos.ConsultApprovalBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="cooApprovalBoardDAO" class="com.khacademy.khoffice.approval.daos.CooperationApprovalBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="vacApprovalBoardDAO" class="com.khacademy.khoffice.approval.daos.VacationApprovalBoardListDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="holdingAssetsDAO" class="com.khacademy.khoffice.holding_assets.daos.HoldingAssetsDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="reserveAssetsDAO" class="com.khacademy.khoffice.reserve_assets.daos.ReserveAssetsDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="projectDAO" class="com.khacademy.khoffice.project.daos.ProjectDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="projectCommentDAO" class="com.khacademy.khoffice.project_comment.daos.ProjectCommentDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="adminDAO" class="com.khacademy.khoffice.admin.daos.AdminDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="addressDAO" class="com.khacademy.khoffice.address.daos.AddressDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="workHistoryDAO" class="com.khacademy.khoffice.work_history.daos.WorkHistoryDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="scheduleDAO" class="com.khacademy.khoffice.schedule.daos.ScheduleDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="departBoardDAO" class="com.khacademy.khoffice.depart_board.daos.DepartBoardDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="departCommentDAO" class="com.khacademy.khoffice.depart_comment.daos.DepartCommentDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="noticeBoardDAO" class="com.khacademy.khoffice.notice_board.daos.NoticeBoardDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="anonyBoardDAO" class="com.khacademy.khoffice.anony_board.daos.AnonyBoardDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	
+	<bean id="anonyCommentDAO" class="com.khacademy.khoffice.anony_comment.daos.AnonyCommentDAO">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean> 
+	
+</beans>

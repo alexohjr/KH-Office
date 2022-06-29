@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project_comment">
+
+	<!-- member_no 값으로 pmember_no 값 구하기 -->
+	<select id="getPmemberNo" parameterType="java.util.HashMap" resultType="int">
+		select pmember_no from project_member where project_no = #{project_no} and member_no = #{member_no}
+	</select>
+	 
+	<!-- 프로젝트 댓글 추가 -->
+	<insert id="addProjectComment" parameterType="com.khacademy.khoffice.project_comment.models.ProjectCommentDTO">
+		insert into project_comment(
+			pcomment_no,
+			pmember_no,
+			content,
+			reg_date,
+			project_no
+		) values (
+			project_comment_seq.nextVal,
+			(select pmember_no from project_member where project_no = #{project_no} and member_no = #{member_no}),
+			#{content},
+			sysdate,
+			#{project_no}
+		)
+	</insert>
+	
+	<!-- 프로젝트 댓글 개수 가져오기 -->
+	<select id="getProjectCommentCount" parameterType="int" resultType="int">
+		select count(*) from project_comment where project_no = #{project_no}
+	</select>
+	
+	<!-- 프로젝트 댓글 가져오기 -->
+	<select id="getProjectCommentList" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.project_comment.models.ProjectCommentDTO">
+		select * from 
+		(select c.pcomment_no, m.member_no, m.position, m.name, m.thumb_path,  c.content, c.reg_date, c.pmember_no, c.project_no, rownum r 
+		from project_comment c, project_member pm, member m 
+		where c.project_no = #{project_no} and c.pmember_no = pm.pmember_no and pm.member_no = m.member_no order by c.pcomment_no desc) where r between #{startRow} and #{endRow}
+	</select> 
+	
+	<!-- 프로젝트 댓글 수정하기 -->
+	<update id="updateProjectComment" parameterType="com.khacademy.khoffice.project_comment.models.ProjectCommentDTO">
+		update project_comment set content = #{content} where pcomment_no = #{pcomment_no}
+	</update>
+	
+	<!-- 프로젝트 댓글 삭제하기 -->
+	<delete id="deleteProjectComment" parameterType="int">
+		delete from project_comment where pcomment_no = #{pcomment_no}
+	</delete>
+	
+	
+</mapper>

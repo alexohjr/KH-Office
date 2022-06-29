@@ -1,0 +1,97 @@
+.edit_form_div {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+/* 선택된 사원 영역 */
+.added_member_area {
+	min-height: 100px;
+	border: 1px solid #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 리스트에서 선택된 사원 */
+.member_select_area li.member_li.selected {
+	color: #ddd;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 600;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333333;
+    text-align: left;
+}
+
+#holding_assets_edit_form {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#holding_assets_edit_form >table {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+#holding_assets_edit_form >table:first-child >tbody >tr >td:first-child {
+	width: 100px;
+}
+
+#holding_assets_edit_form >table:first-child >tbody >tr >td:nth-child(2) >input {
+	width: 50%;
+	padding-left: 8px;
+	height: 25px;
+}
+
+#holding_assets_edit_form >table:nth-child(2) >tbody >tr >td {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#holding_assets_edit_form >table:nth-child(2) >tbody >tr:nth-child(2) >td:first-child {
+	border: 1px solid #ddd;
+	padding: 40px 50px;
+	margin-bottom: 30px;
+	margin-top: 10px;
+	height: 300px;
+	overflow-y: scroll;
+}
+
+
+.holding_assets_btn_area {
+	width: fit-content;
+	margin: 0 auto;
+}
+
+.holding_assets_btn_area #submitBtn {
+	padding: 10px 70px;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.holding_assets_btn_area #submitBtn:hover {
+	 background-color: #FFF;
+    color: #1A237E;
+}
+
+   
+
+.holding_assets_btn_area #edit_form_cancle {
+	padding: 10px 70px;
+    background-color: #FFF;
+    color: #1A237E;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.holding_assets_btn_area #edit_form_cancle:hover {
+	background-color: #1A237E;
+    color: #FFF;
+}

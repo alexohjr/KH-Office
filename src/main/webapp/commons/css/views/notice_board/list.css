@@ -1,0 +1,307 @@
+/*리스트 틀*/
+ul, li {
+   list-style: none;
+   text-align: center;
+   padding: 0;
+   margin: 0;
+}
+
+#mainWrapper {
+   width: 1000px;
+   margin: 0 auto; 
+}
+
+#mainWrapper>ul>li:first-child {
+   text-align: center;
+   font-size: 14pt;
+   height: 40px;
+   vertical-align: middle;
+   line-height: 40px;
+}
+
+#ulTable {
+   margin-top: 10px;
+   line-height: 2.4em;
+}
+
+#ulTable>li:first-child>ul>li {
+   background-color: #e9e9e9e3;
+   font-weight: bold;
+   text-align: center;
+}
+
+#ulTable>li>ul {
+   clear: both;
+   padding: 0px auto;
+   position: relative;
+   min-width: 40px;
+}
+
+#ulTable>li>ul>li {
+   float: left;
+   font-size: 10pt;
+   border-bottom: 1px solid silver;
+   vertical-align: baseline;
+}
+
+#ulTable>li>ul>li:first-child {
+   width: 10%;
+} /*No*/
+#ulTable>li>ul>li:first-child+li {
+   width: 55%;
+} /*제목*/
+#ulTable>li>ul>li:first-child+li+li {
+   width: 20%;
+} /*작성일*/
+#ulTable>li>ul>li:first-child+li+li+li {
+   width: 15%;
+} /*조회수*/
+
+
+#liSearchOption {
+    clear: both;
+    margin-top: 4px;
+    margin-bottom: 30px;
+}
+
+#liSearchOption>div {
+   margin: 0 auto;
+   margin-top: 30px;
+   width: auto;
+   height: 100px;
+}
+
+.left {
+   text-align: center;
+}
+
+.linkclick{
+   text-decoration: none;
+    color: #444444;
+}
+
+.IsToplinkclick{
+   text-decoration: none;
+    color: #ff1e1e;
+    font-weight: bold;
+}
+
+
+/*페이징*/
+.pg_page {
+   width: 20px;
+   height: 20px;
+   font-size: 13px;
+   color: #333;
+   line-height: 18px;
+   margin-top: 18px;
+   margin-bottom: 10px;
+   background: #fff;
+   border: 0px;
+   border-radius: 2px;
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   text-align: center;
+   display: inline-block;
+   text-decoration: none;
+}
+
+.pg_page:hover {
+   background: #f2f2f2;
+}
+
+.pg_prev { /* 이전*/
+   position: relative;
+   top: 7px;
+   left: 1px;
+   width: 20px !important;
+   height: 20px !important;
+   background: #fff;
+   border: 1px solid #ccc;
+   border-radius: 2px;
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   text-indent: -9999px;
+   display: inline-block;
+}
+
+.pg_prev:after {
+   position: absolute;
+   top: 5.5px;
+   left: 8px;
+   content: "";
+   width: 6px;
+   height: 6px;
+   border-top: 1px solid transparent;
+   border-right: 1px solid transparent;
+   border-bottom: 1px solid #777;
+   border-left: 1px solid #777;
+   transform: rotate(45deg);
+   border-right: 1px solid transparent;
+   border-bottom: 1px solid #777;
+   border-left: 1px solid #777;
+}
+
+.pg_prev:hover {
+   background: #fff;
+   border: 1px solid #333;
+}
+
+.pg_next { /* 다음 */
+   position: relative;
+   top: 7px;
+   left: 1px;
+   width: 20px !important;
+   height: 20px !important;
+   background: #fff;
+   border: 1px solid #ccc;
+   border-radius: 2px;
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
+   text-indent: -9999px;
+   display: inline-block;
+}
+
+.pg_next:after {
+   position: absolute;
+   top: 5.5px;
+   right: 8px;
+   content: "";
+   width: 6px;
+   height: 6px;
+   border-top: 1px solid #777;
+   border-right: 1px solid #777;
+   border-bottom: 1px solid transparent;
+   border-left: 1px solid transparent;
+   transform: rotate(45deg);
+}
+
+.pg_next:hover {
+   background: #fff;
+   border: 1px solid #333;
+}
+
+/*게시판*/
+#contentTable {
+   width: 1000px;
+}
+
+#contentTitle {
+   font-size: 25px;
+   font-weight: 500;
+}
+
+#contentDepartName {
+   font-size: 16px;
+   font-weight: 550;
+   color: #212121b5;
+}
+
+#contentDepartLine{
+    color: #455aa7;
+    font-size: 19px;
+    font-weight: 550;
+    margin: auto 3px;
+}
+
+.board-box-line {
+   border-color: #66666661;
+   border-style: solid;
+   border-width: 1px;
+   width: 100%;
+   margin: 10px auto;
+}
+
+/*글쓰기버튼*/
+#addButton {
+   float: right;
+   margin-top: -34px;
+   margin-right: 14px;
+}
+
+
+.inputBtnImg {
+   -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+   -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+   box-shadow: inset 0px 1px 0px 0px #ffffff;
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9
+      ), color-stop(1, #e9e9e9));
+   background: -moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+   background: -webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+   background: -o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+   background: -ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+   background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9',
+      endColorstr='#e9e9e9', GradientType=0);
+   background-color: #f9f9f9;
+   -moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+   border-radius: 4px;
+   border: 1px solid #dcdcdc;
+   display: inline-block;
+   cursor: pointer;
+   color: #666666;
+   font-size: 13px;
+   font-weight: bold;
+   padding: 5px 14px;
+   text-decoration: none;
+   text-shadow: 0px 1px 0px #ffffff;
+
+}
+
+.inputBtnImg:hover {
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9
+      ), color-stop(1, #f9f9f9));
+   background: -moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+   background: -webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+   background: -o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+   background: -ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+   background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9',
+      endColorstr='#f9f9f9', GradientType=0);
+   background-color: #e9e9e9;
+}
+
+.inputBtnImg:active {
+   position: relative;
+   top: 1px;
+}
+
+
+
+/*검색 */
+#searchtypeBoxBtn{
+    width: 51px;
+    height: 26px;
+    border: 1px solid #A9A9A9;
+    color: #111d4c;
+    font-size: 12px;
+}
+
+
+.keywordsubmit{
+    width: 130px;
+    height: 20px;
+    border: 1px solid #A9A9A9;
+    background: #ffffff;
+    padding-top: 2.5px;
+}
+
+.buttonSubmut{
+   font-size: 12px;
+    width: 47px;
+    height: 26px;
+    border: 1px solid #1A237E;
+    background: #1A237E;
+    outline: none;
+    color: #ffffff;
+    margin-left: -4px;
+    padding-top: -1px;
+}
+
+
+/*공지사항 아이콘*/
+.IsTopImg{
+   border-radius: 4px;
+   margin-bottom: -5px;
+}

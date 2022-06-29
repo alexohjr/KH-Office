@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dpartcomment">
+
+	<!-- 댓글 작성 -->
+	<insert id="insertDpartComment" parameterType="com.khacademy.khoffice.depart_comment.models.DepartCommentDTO"> 
+		insert into DEPART_COMMENT (dcomment_no,member_no,content,reg_date,dboard_no) 
+		values(DEPART_COMMENT_SEQ.NEXTVAL,#{member_no},#{content},sysdate,#{dboard_no})
+	</insert>
+	
+ 	<!-- 댓글 Ajax -->
+	<!--<select id="DpartCommentAjaxList" parameterType="java.util.HashMap" resultType="com.khacademy.khoffice.depart_comment.models.DepartCommentDTO"> 
+	select * from(select dc.dcomment_no,dc.content,dc.reg_date, m.name,m.position, rownum r from
+			DEPART_COMMENT dc, member m where dc.member_no = m.member_no and dc.DBOARD_NO = #{DBOARD_NO} order by dc.dcomment_no ) where r between #{start} and #{end};
+	</select>
+ -->
+	<!--  댓글  상세보기 -->
+	<select id="DpartCommentList" resultType="com.khacademy.khoffice.depart_comment.models.DepartCommentDTO">
+		select * from (select dboard_no, dcomment_no, content, reg_date, member_no, name, position, thumb_path, rownum r 
+		from (select dboard_no, dcomment_no, content, reg_date, member_no, name, position, thumb_path, rownum r 
+		from (select dc.dboard_no, dc.dcomment_no, dc.content, dc.reg_date, dc.member_no, m.name, m.position, m.thumb_path, rownum r 
+		from depart_comment dc, member m where dboard_no = #{dboard_no} and dc.member_no = m.member_no) 
+		order by dcomment_no desc) order by dcomment_no desc) where r between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteDpartComment">
+		delete from depart_comment where dcomment_no = #{dcomment_no}
+	</delete>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateDpartComment" parameterType="com.khacademy.khoffice.depart_comment.models.DepartCommentDTO"> 
+		update depart_comment set content = #{content} where dcomment_no = #{dcomment_no}
+	</update>
+	
+	<!-- 댓글 갯수 -->
+	<select id="articleCountDpartComment" resultType="int">
+		select count(*) from depart_comment where dboard_no= #{dboard_no}
+	</select>
+	
+	
+</mapper>  

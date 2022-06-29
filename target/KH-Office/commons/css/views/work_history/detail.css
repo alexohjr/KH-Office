@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+#wrap {
+	padding-top: 89px;
+}
+
+
+.ui-datepicker-calendar {
+    display: none;
+}
+
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display: none;}	
+
+td, th {vertical-align: middle;}
+
+html,body,button,dl,dt,dd,div,form,fieldset,legend,h1,h2,h3,h4,h5,h6,input,select,textarea,ul,ol,li,p,pre,table,td,th,caption,a,button{margin:0;padding:0;}
+html,body{background-color:#fff;}
+h1,h2,h3,h4,h5,h6{font-weight:normal}
+/* body{font-size:16px; color:#666666; font-family:NanumGothic, sans-serif; font-weight: 400;} */
+input, textarea{vertical-align:middle;  font-family:NanumGothic, sans-serif; font-weight: 400;}
+a {color:#333; text-decoration:none;}
+a:hover {text-decoration: none;color: inherit;}
+a:focus {text-decoration: none;color: inherit;}
+ul,ol,li{list-style:none;}
+img{max-width: 100%;border:0;vertical-align:middle;} 
+table{border-collapse:collapse;border-spacing:0;}
+caption{visibility:hidden; font-size:0; line-height:0; opacity:0; height:0; overflow:hidden;}
+em{font-style:normal;}
+
+.clearfix{*zoom:1}
+.clearfix:before,
+.clearfix:after{content:" "; display:table}
+.clearfix:after{clear:both}
+.op3 {opacity: 0.3;}
+
+/* input box color */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; } 
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+
+
+/********** detail_wrap **********/
+
+#work_history_detail_wrap {}
+#work_history_detail_wrap .contentbox {width: 1400px;}
+#work_history_detail_wrap .left_menu {/* width: 200px; height: 1000px; float: left; background-color:#ebf2ff; border-right: 1px solid #d8e0f0; */ width: 200px; height: 1300px; float: left; background-color: #ebf2ff; border-right: 1px solid #d8e0f0;}
+#work_history_detail_wrap .left_menu_inner {padding: 20px;}
+#work_history_detail_wrap .left_menu h1 {/* font-size: 24px; font-family: NanumGothicBold; color:#1f1f1f; margin-bottom: 50px; */ font-size: 27px; font-family: NanumGothicBold; color: #424242; margin-bottom: 50px; font-weight: 600;}
+#work_history_detail_wrap .left_menu h2 {font-size: 18px; color:#1f1f1f; margin-bottom: 10px;}
+#work_history_detail_wrap .left_menu ul {}
+#work_history_detail_wrap .left_menu ul li {margin-bottom: 5px; font-size: 15px;}
+#work_history_detail_wrap .right_content {/* width: 1080px; float: left; */width: 1080px; height: 100%; float: left;}
+#work_history_detail_wrap .right_content_inner {padding:50px;}
+#work_history_detail_wrap .right_content_inner h2 {font-weight:bold; font-size:25px; margin-bottom:35px;}
+#work_history_detail_wrap .right_content_inner_YMD {text-align: center; margin-bottom: 25px; font-size: large;}
+#approval_report_go {float:right; margin-right:30px; margin-bottom:30px;}
+
+#work_history_detail_wrap .right_content_inner_YMD {text-align: center; margin-bottom: 20px; font-size: large;}
+#work_history_detail_wrap .right_content_inner_YM {font-size:15px;}
+#work_history_detail_wrap .right_content_inner_YM i {font-family: tahoma; font-weight:bold; font-size:16px; font-style:normal}
+.YMD_left_arrow {margin-right: 44px;}
+.YMD_left_arrow2 {margin-right:16px;}
+.YMD_right_arrow {margin-left: 44px;}
+.YMD_right_arrow2 {margin-left:16px;}
+.ui-datepicker-calendar {display: none;}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {display: none;}
+.ui-datepicker-trigger{cursor:pointer; }
+
+.history_member_info img {border-radius:50%;width: 80px; height:80px;}
+.info_dname {/* font-size:30px; */ font-size: 30px; font-weight: bolder;}
+.info_name {font-size:20px; display:inline-block;}
+
+/********** request_list **********/
+table.work_history_detail {width:100%; margin:0 auto; font-family: NanumGothic; margin-bottom:20px; border-top: 2px solid #3b3b3b;}
+table.work_history_detail th {height: 45px; background:#f7f7f7; font-size: 13px; color:#313131; border:0; border-bottom:1px solid #BABABA; border-left: 1px solid #DCDCDC;}
+table.work_history_detail th.bdl {border-left: none;}
+table.work_history_detail td {height: 25px; text-align: center; font-size: 13px; color:#424242; border:0; border-bottom:1px solid #c8c8c8; border-left: 1px solid #DCDCDC;}
+table.work_history_detail td.bdl {border-left: none;}
+table.work_history_detail tr {height:30px;}
+table.work_history_detail tr:hover {background-color:#f5f5f5;}
+table.work_history_detail td.li_local {font-size: 13px; color:#5a5a5a;}
+table.work_history_detail td.li_no, table td.li_date {font-family: tahoma; color: #5a5a5a; line-height: 10px;}
+table.work_history_detail td.li_tit {text-align: left; padding-left: 22px;}
+table.work_history_detail td.li_name{}
+table.work_history_detail td.li_status{font-size: 12px;}
+table.work_history_detail img {margin-left:5px;background-color:#FFF; cursor:pointer;}
+
+
+/********** left_menu_inner ********/
+
+.right_content_inner_top {margin-bottom:30px;}
+.tab_menu{position:relative;height:29px;margin-top:20px;background:url(http://static.naver.com/groupware/common/tab_menu.gif) repeat-x 0 100%;font-family:'돋움',dotum;font-size:12px}
+.tab_menu ul,.tab_menu ul li{margin:0;padding:0}
+.tab_menu ul li{list-style:none}
+.tab_menu ul li,.tab_menu ul li a{background:url(http://static.naver.com/groupware/2010/bg_tab2_off.gif) no-repeat}
+.tab_menu ul li{float:left;margin-right:-1px;line-height:26px}
+.tab_menu ul li a{display:inline-block;padding:2px 16px 1px;_padding:3px 16px 0;background-position: 100% 0;font-weight:bold;color:#666;text-decoration:none !important}
+.tab_menu ul li a:hover{color:#000}
+.tab_menu ul li.on,.tab_menu ul li.on a{background-image:url(http://static.naver.com/groupware/2010/bg_tab2_on.gif)}
+.tab_menu ul li.on a{color:#4b52eb}
+
+
+#start_workBtn {margin-right:20px; cursor: pointer;}
+#end_workBtn {cursor: pointer;}
+
+.li_start_work {width: 250px;}
+.li_end_work {width: 250px;}
+
+
+
+.cssStyleBtn {transition: 0.3s; background-color: #1A237E; color: #fff; border: none; cursor: pointer; padding: 3px 5px; margin-right:7px;}
+.cssStyleDelBtn {transition: 0.3s; background-color: #800000; color: #fff; border: none; cursor: pointer; padding: 3px 5px;}
+.cssStyleBackBtn {transition: 0.3s; background-color: #808080; color: #fff; border: none; cursor: pointer; padding: 3px 5px;}
+.cssStyleBtn:hover {transition: 0.3s; background-color:#c0c0c0; color: #000;}
+.cssStyleDelBtn:hover {transition: 0.3s; background-color:#c0c0c0; color: #000;}
+.cssStyleBackBtn:hover {transition: 0.3s; background-color:#c0c0c0; color: #000;}
+

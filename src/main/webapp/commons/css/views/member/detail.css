@@ -1,0 +1,166 @@
+/*전체 폼*/
+#detail_form{
+	border-top:3px solid black;
+}
+
+/* 사원상세페이지 레이블*/
+#titleLabel{
+	font-size: 23px;
+	font-weight: bold;
+	margin-top: 50px;
+    margin-bottom: 14px;
+	display: block;
+}
+
+#infoTitle{
+	margin: 0 auto;
+	display: block;
+	width: 100%;
+	margin: 30px 0;
+}
+
+#infoTitle >span {
+	margin: 0 auto;
+    display: block;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+/*사진*/
+.profile_img{
+	max-width: 110px;
+	max-height: 150px;
+	border: 1px solid #ddd;
+    padding: 5px
+}
+
+/* 부서명 + 이름 + 직위 */
+.name {
+	font-size: 15px;
+	margin: -13px auto;
+	display: block;
+    width: fit-content;
+}
+
+
+/*모든 li*/
+#detail_form > ul > li {
+	display:flex;
+	border-bottom:1px solid #ddd;
+}
+/*모든 li after*/
+#detail_form > ul > li:after {
+	display:block;
+	content:"";
+	clear:both;
+}
+/* 첫번째 li */
+#detail_form > ul > li:first-child {
+	border-top: 1px solid #ddd;
+}
+
+
+/*제목컬럼*/
+.title{
+	float: left;
+	font-weight: bold;
+    width: 100px;
+    box-sizing: border-box;
+    line-height: 50px;
+    border-right: 1px solid #ddd;
+    padding-top: 18px;
+}
+
+/*내용컬럼*/
+.contents{
+	float:left;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/*어드민 버튼들 감싸는 div*/
+#btn_area{
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+    margin-bottom: 45px;
+}
+
+#btn_area:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/*어드민 수정버튼*/
+#edit_form_btn{
+	background-color: white;
+    border: 1px solid #ddd;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 80px;
+    margin: 20px 5px;
+}
+#edit_form_btn:hover{
+	background-color: #1A237E;
+	color: white;
+}
+
+/*어드민 삭제버튼*/
+#delete_form_btn{
+	background-color: #1A237E;
+    border: 1px solid #ddd;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 80px;
+    margin: 20px 5px;
+}
+#delete_form_btn:hover{
+	background-color: white;
+	color: black;
+}
+
+/*어드민 목록으로 버튼*/
+#list_btn{
+	background-color: white;
+    border: 1px solid #ddd;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 174px;
+    margin: -10px 5px;
+    display:block;
+}
+#list_btn:hover{
+	background-color: #1A237E;
+	color: white;
+}
+
+
+/*내정보 - 비밀번호 수정버튼*/
+#password_edit_form_btn {
+	background-color: #1A237E;
+    border: 1px solid #1A237E;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.1s;
+    width: 150px;
+    margin: 20px auto;
+    display: block;
+}
+
+/*내정보 - 비밀번호 수정버튼*/
+#password_edit_form_btn:hover {
+	background-color: white;
+	color: black;
+}

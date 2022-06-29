@@ -1,0 +1,62 @@
+package com.khacademy.khoffice.depart_comment.controllers;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.khacademy.khoffice.depart_comment.models.DepartCommentDTO;
+import com.khacademy.khoffice.depart_comment.services.DepartCommentService;
+
+@Controller("depart_boardAjax")
+@RequestMapping("/depart_comment")
+public class AjaxController {
+	private DepartCommentService dcmService;
+
+	@Autowired
+	@Required
+	public void setDcmService(DepartCommentService dcmService) {
+		this.dcmService = dcmService;
+	}
+
+	// 부서게시판 댓글 더 불러오기
+	@RequestMapping(value = "/ajax/{viewNum}", method = RequestMethod.GET, produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String getList(HttpServletResponse response, @PathVariable("viewNum") int viewNum, @RequestParam("dboard_no") int dboard_no) {
+		
+		response.setContentType("text/html;charset=utf-8");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+
+		int pageSize = 5; // 한페이지의 글의 개수
+		int currentPage = viewNum;
+		int startRow = (currentPage - 1) * pageSize + 1; // 한 페이지의 시작글 번호
+		int endRow = currentPage * pageSize; // 한 페이지의 마지막 글번호
+
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("dboard_no", dboard_no);
+
+		List<DepartCommentDTO> commentlist = dcmService.dcommentList(map);
+
+		for (int i=0; i<commentlist.size(); i++) {
+		}
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("viewNum", viewNum + 1);
+		jsonObject.put("commentlist", commentlist);
+		return jsonObject.toString();
+	}
+
+}

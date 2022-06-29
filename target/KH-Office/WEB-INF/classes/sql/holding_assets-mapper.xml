@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="holdingAssets">
+	
+	<select id="selectHoldingAssetsAll" parameterType="map" resultType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsMemberDTO">
+		select hassets_no, h_name , m_name , member_no, r from
+    	(select hassets_no, h_name, m_name, member_no, rownum r from 
+    	(select hassets_no, ha.name as h_name , m.name as m_name,ha.member_no as member_no from holding_assets ha , member m where ha.member_no=m.member_no order by hassets_no desc) 
+    	order by hassets_no desc)
+    	<!-- where r between #{start} and #{end} -->
+    	<where>
+			<if test="start != null and end != null">
+				R BETWEEN #{start} AND #{end}
+			</if>
+		</where> 
+    	
+	</select>
+	
+	<select id="selectHoldingAssetsSearch" parameterType="map" resultType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsMemberDTO">
+		SELECT hassets_no, h_name , m_name , r from
+    	(SELECT hassets_no, h_name, m_name, rownum r from 
+    	(SELECT hassets_no, ha.name as h_name , m.name as m_name FROM holding_assets ha , member m WHERE ha.member_no=m.member_no order by hassets_no desc) 
+    	order by hassets_no desc) 
+    	WHERE (r between #{start} and #{end} ) and h_name like  '%'||#{keyword}||'%'
+		
+	</select>
+	
+	<insert id="addHoldingAssets" parameterType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsDTO">
+		INSERT INTO holding_assets(HASSETS_NO,NAME,MEMBER_NO) 
+		values(HOLDING_ASSETS_SEQ.nextval,#{name},#{member_no})
+	</insert>
+
+	<select id="holdingAssetsAllCount" resultType="int">
+		SELECT count(*) FROM holding_assets
+	</select>
+	<select id="holdingAssetsSearchCount" parameterType="String" resultType="int">
+		SELECT count(*) FROM holding_assets where name like '%'||#{keyword}||'%'
+	</select>
+	<select id="selectHoldingAssetsOne" parameterType="String" resultType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsMemberDTO">
+		SELECT hassets_no,h.name as h_name, m.name as m_name, h.member_no,position,thumb_path,email 
+		FROM holding_assets h , member m
+		WHERE  h.member_no= m.member_no and hassets_no=#{hAssets_no}
+	</select>
+	<!-- <update id="holdingAssetsEdit" parameterType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsDTO">
+	
+	</update> -->
+	<delete id="holdingAssetsDelete" parameterType="String">
+		DELETE FROM holding_assets WHERE hassets_no=#{hAssets_no}
+	</delete>
+	
+	<update id="holdingAssetsEdit" parameterType="com.khacademy.khoffice.holding_assets.models.HoldingAssetsDTO">
+		update holding_assets set name=#{name}, member_no=#{member_no} where hassets_no = #{hAssets_no}
+	</update>
+	
+</mapper>

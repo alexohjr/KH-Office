@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- templates -->
+	<definition name="base_layout" 	template="/WEB-INF/tiles/template/layout.jsp">
+	
+		<put-attribute name="title" value=""></put-attribute>
+		<put-attribute name="header" value="/WEB-INF/tiles/template/header.jsp"></put-attribute>
+		<put-attribute name="body" value=""></put-attribute>
+		<put-attribute name="favicon" value="favicon.ico"></put-attribute>
+		
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="prefixfree" />
+			<add-attribute value="common" />
+			<add-attribute value="header" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="javascripts">
+			<add-attribute value="jquery-3.3.1.min" />
+			<add-attribute value="moment" />
+			<add-attribute value="transit-0.9.12.min" />
+			<add-attribute value="sweetalert.min" />
+			<add-attribute value="jquery.nicescroll.min" />
+			<add-attribute value="ckeditor/ckeditor" />
+			<add-attribute value="utils" />
+			<add-attribute value="header" />
+			<add-attribute value="common" />
+		</put-list-attribute>
+		
+	</definition>
+	
+	<definition name="department_selectbox" template="/WEB-INF/tiles/template/department_selectbox.jsp" preparer="departmentPreparer"></definition>
+	<definition name="check_work_widget" template="/WEB-INF/tiles/template/check_work_widget.jsp" preparer="workHistoryPreparer"></definition>
+   
+	<!-- 1Depth Controller -->
+	<definition name="tiles/**" extends="base_layout">
+		<put-attribute name="title" value="{1}"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/{1}.jsp"></put-attribute>
+		<put-list-attribute name="stylesheets" 	inherit="true">
+			<add-attribute value="views/{1}" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" 	inherit="true">
+			<add-attribute value="views/{1}" />
+		</put-list-attribute>
+	</definition>
+
+	<!-- 특정 페이지 제이쿼리 버전 낮추기 -->
+	<!-- <definition name="tiles/dashboard" extends="base_layout">
+		<put-attribute name="title" value="대시보드"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/dashboard.jsp"></put-attribute>
+		<put-list-attribute name="stylesheets" 	inherit="true">
+			<add-attribute value="jquery-ui-1.8.18.min" />
+			<add-attribute value="views/dashboard" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="false">
+			<add-attribute value="jquery-1.7.1.min" />
+			<add-attribute value="jquery-ui-1.8.18.min" />
+			<add-attribute value="common" />
+			<add-attribute value="utils" />
+			<add-attribute value="moment" />
+			<add-attribute value="transit-0.9.12.min" />
+			<add-attribute value="sweetalert.min" />
+			<add-attribute value="views/dashboard" />
+		</put-list-attribute>
+	</definition> -->
+	
+	<!-- 보유자산관리용 datepicker 사용 위한 것 추가 -->
+	<definition name="tiles/reserve_assets/list" extends="base_layout">
+      <put-attribute name="title" value="reserve_assets/list"></put-attribute>
+      <put-attribute name="body" value="/WEB-INF/views/reserve_assets/list.jsp"></put-attribute>
+      <put-list-attribute name="stylesheets"    inherit="true">
+         <add-attribute value="fontawesome-free-5.5.0-web/css/all.min" />
+         <add-attribute value="bootstrap.min" />
+         <add-attribute value="views/reserve_assets/list" />
+      </put-list-attribute>
+      <put-list-attribute name="javascripts" inherit="false">
+         <add-attribute value="jquery-1.7.1.min" />
+         <add-attribute value="jquery-ui-1.8.18.min" />
+         <add-attribute value="moment" />
+         <add-attribute value="transit-0.9.12.min" />
+         <add-attribute value="sweetalert.min" />
+         <add-attribute value="jquery.nicescroll.min" />
+         <add-attribute value="utils" />
+         <add-attribute value="header" />
+         <add-attribute value="common" />
+         <add-attribute value="views/reserve_assets/list" />
+      </put-list-attribute>
+   </definition>
+   
+   <!-- 근태관리용 datepicker 사용 위한 것 추가 -->
+   <definition name="tiles/work_history/list" extends="base_layout">
+      <put-attribute name="title" value="work_history/list"></put-attribute>
+      <put-attribute name="body" value="/WEB-INF/views/work_history/list.jsp"></put-attribute>
+      <put-list-attribute name="stylesheets"    inherit="true">
+         <add-attribute value="views/work_history/list" />
+      </put-list-attribute>
+      <put-list-attribute name="javascripts" inherit="false">
+         <add-attribute value="jquery-1.7.1.min" />
+         <add-attribute value="jquery-ui-1.8.18.min" />
+         <add-attribute value="moment" />
+         <add-attribute value="transit-0.9.12.min" />
+         <add-attribute value="sweetalert.min" />
+         <add-attribute value="jquery.nicescroll.min" />
+         <add-attribute value="utils" />
+         <add-attribute value="header" />
+         <add-attribute value="common" />
+         <add-attribute value="views/work_history/list" />
+      </put-list-attribute>
+   </definition>
+   
+   <!-- 근태관리용 datepicker 사용 위한 것 추가 -->
+   <definition name="tiles/work_history/detail" extends="base_layout">
+      <put-attribute name="title" value="work_history/detail"></put-attribute>
+      <put-attribute name="body" value="/WEB-INF/views/work_history/detail.jsp"></put-attribute>
+      <put-list-attribute name="stylesheets" inherit="true">
+         <add-attribute value="views/work_history/detail" />
+      </put-list-attribute>
+      <put-list-attribute name="javascripts" inherit="false">
+        <add-attribute value="jquery-1.7.1.min" />
+         <add-attribute value="jquery-ui-1.8.18.min" />
+         <add-attribute value="moment" />
+         <add-attribute value="transit-0.9.12.min" />
+         <add-attribute value="sweetalert.min" />
+         <add-attribute value="jquery.nicescroll.min" />
+         <add-attribute value="utils" />
+         <add-attribute value="header" />
+         <add-attribute value="common" />
+         <add-attribute value="views/work_history/detail" />
+      </put-list-attribute>
+   </definition>
+   
+   <!-- 캘린더용 datepicker 사용 위한 것 추가 -->
+   <definition name="tiles/schedule/add_form" extends="base_layout">
+      <put-attribute name="title" value="schedule/add_form"></put-attribute>
+      <put-attribute name="body" value="/WEB-INF/views/schedule/add_form.jsp"></put-attribute>
+      <put-list-attribute name="stylesheets"    inherit="true">
+         <add-attribute value="views/schedule/add_form" />
+      </put-list-attribute>
+      <put-list-attribute name="javascripts" inherit="false">
+         <add-attribute value="jquery-1.7.1.min" />
+         <add-attribute value="jquery-ui-1.8.18.min" />
+         <add-attribute value="moment" />
+         <add-attribute value="transit-0.9.12.min" />
+         <add-attribute value="sweetalert.min" />
+         <add-attribute value="jquery.nicescroll.min" />
+         <add-attribute value="utils" />
+         <add-attribute value="header" />
+         <add-attribute value="common" />
+         <add-attribute value="views/schedule/add_form" />
+      </put-list-attribute>
+   </definition>
+   
+   <!-- 캘린더용 datepicker 사용 위한 것 추가 -->
+   <definition name="tiles/schedule/schedule" extends="base_layout">
+      <put-attribute name="title" value="schedule/schedule"></put-attribute>
+      <put-attribute name="body" value="/WEB-INF/views/schedule/schedule.jsp"></put-attribute>
+      <put-list-attribute name="stylesheets"    inherit="true">
+         <add-attribute value="views/schedule/schedule" />
+      </put-list-attribute>
+      <put-list-attribute name="javascripts" inherit="false">
+         <add-attribute value="jquery-1.7.1.min" />
+         <add-attribute value="jquery-ui-1.8.18.min" />
+         <add-attribute value="moment" />
+         <add-attribute value="transit-0.9.12.min" />
+         <add-attribute value="sweetalert.min" />
+         <add-attribute value="jquery.nicescroll.min" />
+         <add-attribute value="utils" />
+         <add-attribute value="header" />
+         <add-attribute value="common" />
+         <add-attribute value="views/schedule/schedule" />
+      </put-list-attribute>
+   </definition>
+   
+	<!-- 2Depth Controller -->
+	<!-- <definition name="tiles/*/*" extends="base_layout">
+		<put-attribute name="title" value="{2}"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
+		<put-list-attribute name="stylesheets" 	inherit="true">
+			<add-attribute value="views/{1}/{2}" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" 	inherit="true">
+			<add-attribute value="views/{1}/{2}" />
+		</put-list-attribute>
+	</definition> -->
+	
+	<!-- 3Depth Controller -->
+	<!-- <definition name="tiles/*/*/*" extends="base_layout">
+		<put-attribute name="title" value="{3}"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"></put-attribute>
+		<put-list-attribute name="stylesheets" 	inherit="true">
+			<add-attribute value="views/{1}/{2}/{3}" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" 	inherit="true">
+			<add-attribute value="views/{1}/{2}/{3}" />
+		</put-list-attribute>
+	</definition> -->
+	
+	<!-- ErrorController -->
+	<!-- <definition name="error/error" extends="base">
+		<put-attribute name="title" value="Error"></put-attribute>
+		<put-attribute name="content" value="/WEB-INF/views/tiles/error/error.jsp"></put-attribute>
+	</definition> -->
+	
+	<!-- 접근권한 불가 페이지 -->
+	<definition name="exception/not_allowed_admin" extends="base_layout">
+		<put-attribute name="title" value="접근 권한이 없습니다."></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/exception/not_allowed_admin.jsp"></put-attribute>
+	  	<put-list-attribute name="stylesheets"    inherit="true">
+         	<add-attribute value="views/exception/not_allowed_admin" />
+      	</put-list-attribute>
+      	<put-list-attribute name="javascripts" inherit="true">
+         	<add-attribute value="views/exception/not_allowed_admin" />
+      	</put-list-attribute>
+	</definition>
+	
+	<definition name="exception/not_allowed_member" extends="base_layout">
+		<put-attribute name="title" value="접근 권한이 없습니다."></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/exception/not_allowed_member.jsp"></put-attribute>
+	  	<put-list-attribute name="stylesheets" inherit="true">
+         	<add-attribute value="views/exception/not_allowed_member" />
+      	</put-list-attribute>
+      	<put-list-attribute name="javascripts" inherit="true">
+         	<add-attribute value="views/exception/not_allowed_member" />
+      	</put-list-attribute>
+	</definition>
+	
+	<definition template="/WEB-INF/views/approval/template/consult_report.jsp" name="consult_report"/>
+	<definition template="/WEB-INF/views/approval/template/vacation_report.jsp" name="vacation_report"/>
+	<definition template="/WEB-INF/views/approval/template/cooperation_report.jsp" name="cooperation_report"/>
+	
+</tiles-definitions>

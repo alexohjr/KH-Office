@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chat_member">
+
+	<insert id="insertAll" parameterType="com.khacademy.khoffice.chat_window.models.ChatWindowMemberDTO">
+		INSERT ALL 
+		<foreach collection="member_no" index="index" item="item">
+			INTO chat_member VALUES (#{cwindow_no}, #{item}) 
+		</foreach>
+		SELECT 1 FROM DUAL
+	</insert>
+	
+	<select id="selectCountByCwindowNo" resultType="com.khacademy.khoffice.chat_window.models.ChatWindowHeadDTO">
+		SELECT COUNT(1) AS  cwindowMemberCount 
+		FROM 
+		chat_member 
+		WHERE cwindow_no = #{cwindowNo}
+	</select>
+	
+	<select id="selectThumbPathByCwindowNo" resultType="com.khacademy.khoffice.chat_window.models.ChatWindowHeadDTO">
+		SELECT * FROM (
+		SELECT thumbPath, ROWNUM R FROM (
+		SELECT M.thumb_path AS thumbPath 
+		FROM 
+		member M INNER JOIN chat_member CM 
+		ON M.member_no = CM.member_no 
+		WHERE CM.cwindow_no = #{cwindowNo}))
+		WHERE R BETWEEN 1 AND 1
+	</select>
+	
+	<select id="selectByCwindowNo"
+		resultType="com.khacademy.khoffice.chat_window.models.ChatWindowMemberJoinDTO">
+		SELECT M.thumb_path AS thumbPath, D.name AS departmentName, M.position AS
+		position, M.name AS name, M.member_no AS memberNo
+		FROM member M
+		INNER JOIN department D
+		ON M.department_no = D.department_no
+		INNER JOIN chat_member CM
+		ON M.member_no = CM.MEMBER_NO
+		WHERE CM.CWINDOW_NO = #{cwindowNo}
+</select>
+
+<delete id="deleteOne" parameterType="com.khacademy.khoffice.chat_member.models.ChatMemberDTO">
+	DELETE FROM chat_member 
+	<where>
+		<if test="cwindowNo != null and memberNo != null">
+			cwindow_no = #{cwindowNo} AND member_no = #{memberNo}
+		</if>
+	</where>
+</delete>
+
+<select id="selectMemberByCwindowNoMemberNo" parameterType="com.khacademy.khoffice.chat_member.models.ChatMemberDTO" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+	SELECT M.member_no, M.name, M.position 
+	FROM member M 
+	INNER JOIN chat_member CM
+	ON M.member_no = CM.member_no
+	<where>
+		<if test="cwindowNo != null and memberNo != null">
+			CM.cwindow_no = #{cwindowNo} AND CM.member_no = #{memberNo}
+		</if>
+	</where> 
+</select>
+
+<!-- 시작, 끝 행번호로 조회 -->
+   <select id="selectByStartEnd" resultType="com.khacademy.khoffice.member.models.MemberDTO">
+      SELECT * FROM (
+      SELECT member_no, name, department_no, position, email, phone, tel, zipcode, main_address, hire_date, hire_type, emp_type, birthday, gender, marriage, disabled, password, thumb_path, is_bookmark, ROWNUM R FROM (
+      SELECT * FROM member))
+      <where>
+         <if test="start != null and end != null">
+            R BETWEEN #{start} AND #{end}
+         </if>
+      </where> 
+   </select>
+
+</mapper>

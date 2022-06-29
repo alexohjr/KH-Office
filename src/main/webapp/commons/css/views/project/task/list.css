@@ -1,0 +1,155 @@
+#wrap {
+	padding-top: 150px;
+}
+
+h2 {
+	font-size: 26px;
+	font-weight: 600;
+	padding-bottom: 15px;
+	border-bottom: 2px solid #333333;
+	text-align: left;
+}
+
+/* 채팅목록 영역 */
+.task_list_area {
+}
+
+.task_list_area ul li  {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 10px;
+}
+
+.task_list_area ul >li:first-child {
+	border-bottom: 3px double #000;
+}
+
+.task_list_area ul li >span {
+	box-sizing: border-box;
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+}
+
+/* 프로젝트명 */
+.project_name, .project_name_label {
+	width: 25%;
+}
+
+/* 프로젝트 상태 */
+.project_status, .project_status_label {
+	width: 10%;
+}
+
+/* 태스크명 */
+.task_name, .task_name_label {
+	width: 25%;
+}
+
+/* 태스크 상태 */
+.task_status, .task_status_label {
+	width: 10%;
+}
+
+/* 마감일 */
+.deadline, .deadline_label {
+	width: 10%;
+}
+
+/* 첨부파일 경로 */
+.file_path, .file_path_label {
+	width: 18%;
+}
+
+.file_path >a >img {
+	width: 15px;
+	vertical-align: -webkit-baseline-middle;
+}
+
+/* 페이저 영역 */
+.pager_area {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.pager_area >a {
+	text-decoration: none;
+	color: #777;
+	font-size: 16px;
+	margin: 0 5px;
+}
+
+.pager_area >a.curr_page {
+	font-weight: 800;
+	color: black;
+}
+
+.pager_area >.pager_direction >img {
+	width: 20px;
+    margin-bottom: -5px;
+}
+
+.post_not_exist {
+	width: fit-content;
+	font-size: 16px;
+	margin: 0 auto;
+	margin-top: 30%;
+}
+
+/* 상태별 폰트 컬러 */
+
+.status_black {
+	color: #282828;
+}
+
+.status_red {
+	color: #B54017;
+}
+
+.status_green {
+	color: #38BE5E;
+}
+
+.status_silver {
+	color: #383838;
+}
+
+/* 검색영역 */
+.search_form {
+	display: flex;
+	justify-content: flex-end;
+    align-items: stretch;
+    height: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.search_form >input[type="text"] {
+	padding-left: 8px;
+}
+
+.search_form >input[type="submit"] {
+	padding: 0 20px;
+    background-color: #1A237E;
+    color: white;
+    transition: all 0.2s;
+    border: 1px solid #1A237E;
+    cursor: pointer;
+}
+
+.project_name, .task_name {
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+

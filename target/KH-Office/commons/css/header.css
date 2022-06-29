@@ -1,0 +1,149 @@
+header {
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+	position: fixed;
+    /* line-height: 100px; */
+    text-align: center;
+    box-sizing: border-box;
+    background-color: #283442;
+    padding: 20px 0;
+    transition: all 0.5s;
+    z-index: 1000; 
+}
+
+header a {
+	text-decoration: none;
+	color: #afafaf;
+}
+
+header a:hover {
+	color: white;
+}
+
+header >div {
+	width: 1280px;
+	margin: 0 auto;
+	display: flex;
+    align-items: center;
+}
+
+header >div >div {
+	float: left; 
+}
+
+header >div:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.logo_area {
+	box-sizing: border-box;
+	width: 50px;
+}
+
+.logo_area h1 a img {
+	display: block;
+	width: 100%;
+}
+
+.nav_menu {
+	box-sizing: border-box;
+	width: calc(85% - 25px);
+	padding: 0 30px;
+}
+
+.nav_menu >ul {
+	display: flex;
+    justify-content: space-evenly;	
+}
+
+.nav_menu >ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.nav_menu >ul >li {
+	position: relative;
+	float: left;
+}
+
+.util_menu {
+	box-sizing: border-box;
+	width: calc(15% - 25px);
+}
+
+.util_menu ul {
+	display: flex;
+    justify-content: space-evenly;	
+}
+
+.util_menu ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+.util_menu ul li {
+	float: left;
+}
+
+/* 줄어든 버전 */
+header.shrink {
+    padding: 0 0;
+    opacity: 0.8;
+    border-radius: 0 0 100px 100px;
+}
+
+header.shrink:hover {
+	opacity: 1;
+}
+
+header.shrink >div {
+	margin: 0 auto;
+	display: flex;
+    align-items: center;
+}
+
+/* 2depth 메뉴 */
+.nav_menu_2 {
+	position: absolute;
+	top: 100%;
+	left: calc(-50% - 25px);
+	width: max-content;
+	background-color: #FFF;
+	border: 1px solid #283442;
+	box-sizing: border-box;
+	display: none;
+}
+
+.nav_menu_2 >ul >li {
+	border-bottom: 1px solid #afafaf;
+}
+
+.nav_menu_2 >ul >li >a {
+	color: #283442;
+	display: block;
+	padding: 10px 30px;
+}
+
+.nav_menu_2 >ul >li:hover >a {
+	color: #000;
+	font-weight: 800;
+	background-color: #e4e3f4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

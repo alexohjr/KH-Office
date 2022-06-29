@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.5.201807030714-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/main/webapp/WEB-INF/dispatcherDepartment-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherChatWindow-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherTest-servlet.xml</config>
+	</configs>
+	<autoconfigs>
+		<config>src/main/webapp/WEB-INF/dispatcherApproval-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherAddress-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherBoard-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherAdmin-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherDashboard-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherHolding_assets-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/mybatis.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherTask-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherWorkhistory-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherChatMember-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherMember-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherProject-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherSchedule-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherReserve_assets-servlet.xml</config>
+		<config>src/main/webapp/WEB-INF/dispatcherChatMessage-servlet.xml</config>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

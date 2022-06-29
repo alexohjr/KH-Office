@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consult_report_board">
+
+
+	<select id="select_ConreportNo" resultType="int">
+		select count(*) conreport_no from consult_report
+	</select>
+
+
+	<!-- 결재작성페이지에 진입한 작성자의 정보 -->
+	<select id="consult_report_getForm" parameterType="int"
+		resultType="com.khacademy.khoffice.approval.models.ConsultReportAddFormDTO">
+		
+		select m.name mname,d.name dname,m.position,sysdate reg_date
+		from member m inner join department d
+		on m.department_no = d.department_no where member_no=#{member_no}
+		
+	</select>
+
+	<!-- 페이징을 위한 품의서 -->
+	<select id="consult_report_count" parameterType="int"
+		resultType="int">
+		select count(*) from
+		consult_report
+		where
+		member_no=#{member_no}
+	</select>
+
+	<select id="consult_report_list" parameterType="map"
+		resultType="com.khacademy.khoffice.approval.models.ConsultReportBoardListDTO">
+		
+		select conreport_no,title,status,name,reg_date,r from 
+		(select v.conreport_no,v.title, ROW_NUMBER() OVER (PARTITION BY v.conreport_no 
+		ORDER BY a.status desc) as max_status,status ,m.name,v.reg_date,r  
+		from conreport_view v inner join member m
+		on m.member_no=v.member_no 
+		inner join consult_approval a 
+		on a.conreport_no=v.conreport_no
+		where m.member_no=#{member_no} and r between #{start} and #{end} order by r) 
+		where max_status=1
+		
+		
+<!-- 		select distinct v.conreport_no,v.title,a.status,m.name,v.reg_date,r
+		from conreport_view v inner join member m 
+		on m.member_no=v.member_no inner join consult_approval a
+		on a.conreport_no=v.conreport_no
+		where r
+		between #{start} and #{end} and m.member_no=#{member_no} order by r -->
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<select id="select_VacreportNo" resultType="int">
+		select count(*) from vacation_report
+	</select>
+
+
+	<!-- 페이징을 위한 연차신청서 -->
+	<select id="vacation_report_count" parameterType="int"
+		resultType="int">
+		select count(*) from
+		vacation_report
+		where
+		member_no=#{member_no}
+	</select>
+
+	<select id="vacation_report_list" parameterType="map"
+		resultType="com.khacademy.khoffice.approval.models.VacationReportBoardListDTO">
+		select
+		v.vacreport_no,v.type,v.reg_date,m.name,m2.name
+		substitute
+		from
+		vacreport_view v inner join member m
+		on
+		m.member_no=v.member_no inner
+		join member m2
+		on
+		m2.member_no=v.substitute where r between #{start}
+		and #{end} and
+		m.member_no=#{member_no}
+	</select>
+
+
+
+	<!-- 페이징을 위한 업무협조요청서 정보 -->
+	<select id="cooperation_report_count" parameterType="int"
+		resultType="int">
+
+	</select>
+
+	<select id="cooperation_report_list" parameterType="map"
+		resultType="com.khacademy.khoffice.approval.models.CooperationReportBoardListDTO">
+
+	</select>
+</mapper>

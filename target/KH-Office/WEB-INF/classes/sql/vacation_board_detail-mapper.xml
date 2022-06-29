@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="vacation_board_detail">
+<select id="selectVacationDetailByNum" parameterType="map" resultType="com.khacademy.khoffice.approval.models.VacationReportAddFormDTO">
+	select m.name mname,d.name dname,m.position,
+	v.reg_date,v.vacreport_no,a.member_no,
+	v.substitute,v.type,v.start_date,v.end_date,
+	(v.end_date-v.start_date+1) use_day,v.reason
+	from vacation_report v inner join member m
+	on v.member_no=m.member_no inner join department d
+	on d.department_no=m.department_no inner join vacation_approval a
+	on v.vacreport_no=a.vacreport_no 
+	where v.vacreport_no=#{vacreport_no}
+</select>
+
+<select id="getNameByMemberNo" parameterType="int" resultType="string">
+	select name from member where member_no=#{member_no}
+</select>
+</mapper>
